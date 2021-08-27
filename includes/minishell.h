@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/27 19:01:11 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/27 19:05:20 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <curses.h>
 # include <term.h>
 
-# include <libft.h>
-
+# include "libft.h"
+# include "struct.h"
 
 #endif

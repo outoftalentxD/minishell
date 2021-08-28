@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/27 19:05:20 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/28 03:42:50 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,21 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
+# include <curses.h>
+# include <term.h>
 # include <fcntl.h>
 # include <dirent.h>
 # include <signal.h>
 # include <errno.h>
 # include <sys/wait.h>
 # include <limits.h>
-# include <curses.h>
-# include <term.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
-# include "libft.h"
+# include "../libft/libft.h"
 # include "struct.h"
+# include "parser.h"
+# include "core.h"
 
 #endif

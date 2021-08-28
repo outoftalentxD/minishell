@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 18:56:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/28 03:33:02 by melaena          ###   ########.fr       */
+/*   Created: 2021/08/28 01:38:37 by melaena           #+#    #+#             */
+/*   Updated: 2021/08/28 01:39:30 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef PARSER_H
+# define PARSER_H
 
 # include "minishell.h"
 
-typedef struct s_dict
-{
-	char *key;
-	char *value;
-	struct s_dict *next;
-}	t_dict;	
-
-typedef struct s_mshell
-{
-	struct s_dict *env;
-}	t_mshell;
+int	preparse(char *str);
 
 #endif

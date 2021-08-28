@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 18:56:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/28 03:33:02 by melaena          ###   ########.fr       */
+/*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
+/*   Updated: 2021/08/28 03:51:50 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef CORE_H
+# define CORE_H
 
-# include "minishell.h"
+#include "minishell.h"
 
-typedef struct s_dict
-{
-	char *key;
-	char *value;
-	struct s_dict *next;
-}	t_dict;	
+int			dict_add_elem(t_dict **dict, t_dict *elem);
+t_dict		*dict_init_elem(char *key, char *value);
+char		*dict_get_value(t_dict *dict, char *key);
+t_dict		*dict_get_elem(t_dict *dict, char *key);
 
-typedef struct s_mshell
-{
-	struct s_dict *env;
-}	t_mshell;
+
+t_dict		*init_env(char **env);
+t_mshell	*init_mshell(char **env);
 
 #endif

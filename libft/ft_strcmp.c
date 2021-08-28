@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 11:34:47 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/28 02:08:43 by melaena          ###   ########.fr       */
+/*   Created: 2021/08/28 03:38:18 by melaena           #+#    #+#             */
+/*   Updated: 2021/08/28 03:40:05 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_strcmp(const char *str1, const char *str2)
 {
-	char	*ptr;
-	int		len1;
-	int		len2;
+	unsigned char	*s1;
+	unsigned char	*s2;
 
-	if (!s1)
-		return (0);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	ptr = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-	if (ptr == 0)
-		return (0);
-	ptr[len1 + len2] = 0;
-	while (len2--)
-		ptr[len1 + len2] = s2[len2];
-	while (len1--)
-		ptr[len1] = s1[len1];
-	return (ptr);
+	s1 = (unsigned char *)str1;
+	s2 = (unsigned char *)str2;
+	if (*s1 == 0 || *s2 == 0)
+		return (*s1 - *s2);
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
 }

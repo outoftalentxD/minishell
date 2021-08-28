@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 15:13:30 by melaena           #+#    #+#             */
-/*   Updated: 2021/07/31 22:56:20 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/28 03:39:28 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char				*ft_strrchr(const char *str, int c);
 char				*ft_strnstr(const char *haystack,
 						const char *needle, size_t len);
 int					ft_strncmp(const char *str1, const char *str2, size_t n);
+int					ft_strcmp(const char *str1, const char *str2);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 size_t				ft_strlcpy(char *dest, const char *src, size_t destsize);
 size_t				ft_strlcat(char *dest, const char *src, size_t destsize);

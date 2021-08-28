@@ -7,12 +7,22 @@ CCFLAGS = -Wall -Wextra -Werror
 INCLUDES = ./includes
 
 HEADER =	$(INCLUDES)/minishell.h \
-			$(INCLUDES)/struct.h
+			$(INCLUDES)/struct.h \
+			$(INCLUDES)/parser.h \
+			$(INCLUDES)/core.h \
 
 HEADERS =	minitalk.h \
-			struct.h
+			struct.h \
+			parser.h \
+			core.h \
 
-SRCS =	srcs/main.c \
+MAIN = main
+PARSER = parse
+CORE = init dict_utils
+
+SRCS =	$(addsuffix .c, $(addprefix srcs/, $(MAIN))) \
+		$(addsuffix .c, $(addprefix srcs/parser/, $(PARSER))) \
+		$(addsuffix .c, $(addprefix srcs/core/, $(CORE))) \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -20,7 +30,8 @@ LIBFT_HEADER = ./libft/libft.h
 LIBFT = ./libft/libft.a
 LIBFT_FLAGS = -L=libft -lft
 
-EXTLIB_FLAGS = -ltermcap 
+EXTLIB_FLAGS = -ltermcap -lreadline
+
 
 $(NAME): 
 

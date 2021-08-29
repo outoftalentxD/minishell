@@ -1,7 +1,6 @@
 NAME = minishell
 
-CC = clang
-
+CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 
 INCLUDES = ./includes
@@ -17,7 +16,7 @@ HEADERS =	minitalk.h \
 			core.h \
 
 MAIN = main
-PARSER = parse
+PARSER = parse utils_1 quotes
 CORE = init dict_utils
 
 SRCS =	$(addsuffix .c, $(addprefix srcs/, $(MAIN))) \

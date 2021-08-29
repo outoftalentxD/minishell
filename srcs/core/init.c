@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:09:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/28 03:51:18 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/28 15:35:41 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ t_mshell *init_mshell(char **env)
 	shell = ft_calloc(1, sizeof(t_mshell));
 	if (!shell)
 		return (0);
-	shell->env = init_env(env);
 	return (shell);
 }

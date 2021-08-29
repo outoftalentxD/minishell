@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:13:48 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/28 03:46:30 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/28 15:35:38 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char *dict_get_value(t_dict *dict, char *key)
 	t_dict *elem;
 	
 	elem = dict_get_elem(dict, key);
+	if (!elem)
+		return (0);
 	return (elem->value);
 }
 

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 15:04:59 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 16:02:34 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 16:04:54 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	throw_error_unset(char *arg, int code)
 {
 	char	*error;
-	
+
 	if (code == UNSET_FEW_ARGS_ERROR)
 		error = ": not enough arguments";
 	if (code == UNSET_KEY_CONTENT_ERROR)
@@ -27,7 +27,7 @@ static int	throw_error_unset(char *arg, int code)
 	return (0);
 }
 
-static int env_key_is_valid(char *key)
+static int	env_key_is_valid(char *key)
 {
 	int	i;
 

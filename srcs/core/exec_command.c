@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:16:25 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 16:00:19 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 16:12:47 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	exec_command(char **args)
 {
 	char	*command;
-	
+
 	if (!ft_strcmp(args[0], "echo"))
 		bi_echo(args);
 	else if (!ft_strcmp(args[0], "pwd"))

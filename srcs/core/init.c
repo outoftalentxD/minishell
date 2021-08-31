@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:09:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 15:09:08 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 16:12:05 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_dict	*init_env(char **env)
 	char	*key;
 	char	*value;
 	int		len;
-		
+
 	denv = 0;
 	while (*env)
 	{	
@@ -26,20 +26,20 @@ t_dict	*init_env(char **env)
 		while ((*env)[len])
 		{
 			if ((*env)[len] == '=')
-				break;
+				break ;
 			len++;
 		}
 		key = ft_substr(*env, 0, len);
 		value = ft_substr(*env, len + 1, ft_strlen(*env));
-		dict_add_elem(&denv, dict_init_elem(key, value));		
+		dict_add_elem(&denv, dict_init_elem(key, value));
 		env++;
 	}
 	return (denv);
 }
 
-t_mshell *init_mshell(char **env)
+t_mshell	*init_mshell(char **env)
 {
-	t_mshell *shell;
+	t_mshell	*shell;
 
 	shell = ft_calloc(1, sizeof(t_mshell));
 	if (!shell)

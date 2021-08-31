@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 15:26:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 16:03:21 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 16:11:17 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	dict_del_elem(t_dict **dict, t_dict *elem)
 		prev->next = 0;
 	else
 		*dict = 0;
-	dict_free_elem(elem);	
+	dict_free_elem(elem);
 }
 
 int	dict_del_by_key(t_dict **dict, char *key)

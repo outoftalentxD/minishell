@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:36:49 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 14:44:49 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 14:47:50 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	throw_error_export(char **content, int code)
 {
-	char *error;
+	char	*error;
 
 	if (code == EXPORT_KEY_CONTENT_ERROR)
 		error = "export: not valid in this context: ";
@@ -38,13 +38,13 @@ static int	throw_error_export(char **content, int code)
 static int	env_key_is_valid(char *key)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!key)
 		return (EXPORT_KEY_NULL_ERROR);
 	if (ft_isdigit(key[0]))
 		return (EXPORT_KEY_DIGIT_ERROR);
-	while(key[i])
+	while (key[i])
 	{
 		if (!ft_isenvkey(key[i]))
 			return (EXPORT_KEY_CONTENT_ERROR);
@@ -58,7 +58,7 @@ static char	**split_env_elem(char *arg)
 	char	**content;
 	int		i;
 	int		len;
-	
+
 	content = ft_calloc(3, sizeof(char *));
 	content[2] = 0;
 	len = ft_strlen(arg);
@@ -76,14 +76,14 @@ static char	**split_env_elem(char *arg)
 	return (content);
 }
 
-int bi_export(char **args, t_dict *env)
+int	bi_export(char **args, t_dict *env)
 {
 	char	**content;
 	int		code;
 	int		size;
 	char	*value;
 	t_dict	*elem;
-		
+
 	size = get_args_size(args);
 	if (size == 1)
 		return (bi_env(env));

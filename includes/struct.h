@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/29 12:23:18 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 15:10:02 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_dict
 	char			*key;
 	char			*value;
 	struct s_dict	*next;
+	struct s_dict	*prev;
 }	t_dict;	
 
 typedef struct s_mshell

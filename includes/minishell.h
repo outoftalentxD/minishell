@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 14:10:12 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 15:18:27 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define EXPORT_KEY_CONTENT_ERROR 4001
 # define EXPORT_KEY_NULL_ERROR 4002
 # define EXPORT_KEY_DIGIT_ERROR 4003
+
+# define UNSET_FEW_ARGS_ERROR 5001
+# define UNSET_KEY_CONTENT_ERROR 5002
 
 extern t_dict	*g_env;
 

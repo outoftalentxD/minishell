@@ -17,8 +17,8 @@ HEADERS =	minitalk.h \
 
 MAIN = main
 PARSER = parse quotes utils_1 utils_2
-CORE = init dict_utils exec_command
-BUILTINS = echo pwd env export cd
+CORE = init dict_utils dict_utils_2 exec_command 
+BUILTINS = echo pwd env export cd unset
 
 SRCS =	$(addsuffix .c, $(addprefix srcs/, $(MAIN))) \
 		$(addsuffix .c, $(addprefix srcs/parser/, $(PARSER))) \

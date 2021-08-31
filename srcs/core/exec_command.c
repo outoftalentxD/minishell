@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:16:25 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 03:00:17 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 16:00:19 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	exec_command(char **args)
 		bi_export(args, g_env);
 	else if (!ft_strcmp(args[0], "cd"))
 		bi_cd(args, g_env);
+	else if (!ft_strcmp(args[0], "unset"))
+		bi_unset(args, &g_env);
 	else
 	{
 		ft_putstr_fd(args[0], STDOUT_FILENO);

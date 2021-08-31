@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:13:48 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 02:53:03 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 15:59:11 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_dict *dict_init_elem(char *key, char *value)
 	elem->key = key;
 	elem->value = value;
 	elem->next = 0;
+	elem->prev = 0;
 	return (elem);
 }
 
@@ -59,6 +60,6 @@ int	dict_add_elem(t_dict **dict, t_dict *elem)
 	while (temp->next)
 		temp = temp->next;
 	temp->next = elem;
+	elem->prev = temp;
 	return (0);
-
 }

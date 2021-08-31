@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 14:34:33 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 15:59:09 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@
 
 
 /* dictionaries utils */
-int			dict_add_elem(t_dict **dict, t_dict *elem);
 t_dict		*dict_init_elem(char *key, char *value);
-char		*dict_get_value(t_dict *dict, char *key);
 t_dict		*dict_get_elem(t_dict *dict, char *key);
+int			dict_add_elem(t_dict **dict, t_dict *elem);
+int			dict_free_elem(t_dict *elem);
+int			dict_del_by_key(t_dict **dict, char *key);
+int			dict_del_elem(t_dict **dict, t_dict *elem);
+char		*dict_get_value(t_dict *dict, char *key);
 
 /* enviroment utils */
 t_dict		*init_env(char **env);
@@ -35,6 +38,7 @@ int			bi_pwd(void);
 int			bi_env(t_dict *env);
 int			bi_export(char **args, t_dict *env);
 int			bi_cd(char **args, t_dict *env);
+int			bi_unset(char **args, t_dict **env);
 
 /* utils */
 int			get_args_size(char **args);

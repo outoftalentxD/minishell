@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 15:59:09 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 16:14:07 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CORE_H
 
 # include "minishell.h"
-
 
 /* dictionaries utils */
 t_dict		*dict_init_elem(char *key, char *value);
@@ -30,7 +29,7 @@ t_dict		*init_env(char **env);
 t_mshell	*init_mshell(char **env);
 
 /* core funcs */
-int	exec_command(char **argv);
+int			exec_command(char **argv);
 
 /* builtins */
 int			bi_echo(char **args);

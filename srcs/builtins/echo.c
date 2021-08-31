@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 15:07:46 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/30 16:16:02 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 16:14:42 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	get_args_size(char **args)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (args[size])
@@ -24,9 +24,9 @@ int	get_args_size(char **args)
 
 int	bi_echo(char **args)
 {
-	int i;
-	int n_opt;
-	int size;
+	int	i;
+	int	n_opt;
+	int	size;
 
 	n_opt = 0;
 	size = get_args_size(args);

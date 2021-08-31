@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 02:46:21 by melaena          ###   ########.fr       */
+/*   Created: 2021/08/30 15:58:09 by melaena           #+#    #+#             */
+/*   Updated: 2021/08/30 16:23:04 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_dict	*g_env;
-
-int	main(int argc, char **argv, char **env)
+int	bi_pwd(void)
 {
-	char *line;
-	int i;
-	char **args;
+	char cwd[2048];
 
-	g_env = init_env(env);
-	while (1)
+	if (getcwd(cwd, 2048))
 	{
-		line = readline("minishell$ ");
-		add_history(line);
-		args = ft_split(line, ' ');
-		i = 0;
-		while (args[i])
-		{
-			preparse(&args[i]);
-			i++;
-		}
-		exec_command(args);
+		ft_putendl_fd(cwd, STDOUT_FILENO);
+		return (0);
 	}
+	else
+		return (-1);
 }

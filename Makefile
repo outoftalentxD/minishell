@@ -16,12 +16,14 @@ HEADERS =	minitalk.h \
 			core.h \
 
 MAIN = main
-PARSER = parse utils_1 quotes
-CORE = init dict_utils
+PARSER = parse utils_1 quotes utils_2
+CORE = init dict_utils exec_command
+BUILTINS = echo pwd env export cd
 
 SRCS =	$(addsuffix .c, $(addprefix srcs/, $(MAIN))) \
 		$(addsuffix .c, $(addprefix srcs/parser/, $(PARSER))) \
 		$(addsuffix .c, $(addprefix srcs/core/, $(CORE))) \
+		$(addsuffix .c, $(addprefix srcs/builtins/, $(BUILTINS))) \
 
 OBJS = $(SRCS:.c=.o)
 

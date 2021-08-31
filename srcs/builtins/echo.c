@@ -1,37 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 02:46:21 by melaena          ###   ########.fr       */
+/*   Created: 2021/08/30 15:07:46 by melaena           #+#    #+#             */
+/*   Updated: 2021/08/30 16:16:02 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_dict	*g_env;
-
-int	main(int argc, char **argv, char **env)
+int	get_args_size(char **args)
 {
-	char *line;
-	int i;
-	char **args;
+	int size;
 
-	g_env = init_env(env);
-	while (1)
+	size = 0;
+	while (args[size])
+		size++;
+	return (size);
+}
+
+int	bi_echo(char **args)
+{
+	int i;
+	int n_opt;
+	int size;
+
+	n_opt = 0;
+	size = get_args_size(args);
+	if (size > 1)
 	{
-		line = readline("minishell$ ");
-		add_history(line);
-		args = ft_split(line, ' ');
-		i = 0;
+		while (args[n_opt + 1] && !ft_strcmp(args[n_opt + 1], "-n"))
+			n_opt++;
+		i = n_opt + 1;
 		while (args[i])
 		{
-			preparse(&args[i]);
+			ft_putstr_fd(args[i], STDOUT_FILENO);
+			if (args[i + 1])
+				ft_putstr_fd(" ", STDOUT_FILENO);
 			i++;
 		}
-		exec_command(args);
 	}
+	if (!n_opt)
+		ft_putstr_fd("\n", STDOUT_FILENO);
 }

@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 02:46:21 by melaena          ###   ########.fr       */
+/*   Created: 2021/08/30 16:28:42 by melaena           #+#    #+#             */
+/*   Updated: 2021/08/31 02:35:27 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_dict	*g_env;
-
-int	main(int argc, char **argv, char **env)
+int	bi_env(t_dict *env)
 {
-	char *line;
-	int i;
-	char **args;
-
-	g_env = init_env(env);
-	while (1)
+	while (env)
 	{
-		line = readline("minishell$ ");
-		add_history(line);
-		args = ft_split(line, ' ');
-		i = 0;
-		while (args[i])
-		{
-			preparse(&args[i]);
-			i++;
-		}
-		exec_command(args);
+		ft_putstr_fd(env->key, STDOUT_FILENO);
+		ft_putchar_fd('=', STDOUT_FILENO);
+		ft_putendl_fd(env->value, STDOUT_FILENO);
+		env = env->next;
 	}
+	return (0);
 }

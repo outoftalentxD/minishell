@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/29 12:24:24 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/30 16:38:20 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,9 @@ int	preparse(char **strs)
 		*strs = str;
 	}
 	return (0);
+}
+
+char **parse(char *line)
+{
+	
 }

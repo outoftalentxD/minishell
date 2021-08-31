@@ -16,7 +16,7 @@ HEADERS =	minitalk.h \
 			core.h \
 
 MAIN = main
-PARSER = parse utils_1 quotes utils_2
+PARSER = parse quotes utils_1 utils_2
 CORE = init dict_utils exec_command
 BUILTINS = echo pwd env export cd
 

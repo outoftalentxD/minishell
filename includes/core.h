@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 03:00:55 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 14:34:33 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int			bi_cd(char **args, t_dict *env);
 
 /* utils */
 int			get_args_size(char **args);
+int			ft_free_args(char **args);
 
 #endif

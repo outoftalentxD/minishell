@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 12:14:52 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/30 14:30:42 by melaena          ###   ########.fr       */
+/*   Updated: 2021/08/31 13:49:54 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,6 @@ char	*str_replace(char *str, char *replace, char *to, int start)
 	while (i < len)
 		new[i++] = str[j++];
 	return (new);
-}
-
-int	ft_isenvkey(int c)
-{
-	if (ft_isalnum(c) || c == '_')
-		return (1);
-	else
-		return (0);
 }
 
 char	*process_envvar(char *str, int *i)

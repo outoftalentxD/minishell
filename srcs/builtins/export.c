@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:36:49 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 16:00:15 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/01 17:35:19 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	bi_export(char **args, t_dict *env)
 		value = ft_strdup(content[1]);
 	elem = dict_get_elem(env, content[0]);
 	if (elem)
-		elem->value = value;
+		dict_change_value(elem, value);
 	else
 		dict_add_elem(&env, dict_init_elem(ft_strdup(content[0]), value));
 	ft_free_args(content);

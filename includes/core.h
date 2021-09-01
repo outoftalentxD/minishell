@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 18:29:52 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/01 17:35:04 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int			dict_free_elem(t_dict *elem);
 int			dict_del_by_key(t_dict **dict, char *key);
 int			dict_del_elem(t_dict **dict, t_dict *elem);
 char		*dict_get_value(t_dict *dict, char *key);
+int 		dict_change_value(t_dict *elem, char *value);
+int 		dict_change_value_dup(t_dict *elem, char *value);
 
 /* enviroment utils */
 t_dict		*init_env(char **env);

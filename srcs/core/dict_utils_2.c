@@ -6,11 +6,29 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 15:26:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 16:11:17 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/01 17:35:16 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int dict_change_value_dup(t_dict *elem, char *value)
+{
+	if (!elem)
+		return (0);
+	free(elem->value);
+	elem->value = ft_strdup(value);
+	return (0);
+}
+
+int dict_change_value(t_dict *elem, char *value)
+{
+	if (!elem)
+		return (0);
+	free(elem->value);
+	elem->value = value;
+	return (0);
+}
 
 int	dict_free_elem(t_dict *elem)
 {

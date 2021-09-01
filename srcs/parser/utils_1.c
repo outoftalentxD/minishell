@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 12:14:52 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 13:49:54 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/01 17:26:18 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*process_envvar(char *str, int *i)
 	while (ft_isenvkey(str[j++]))
 		len++;
 	var = ft_substr(str, *i + 1, len);
-	value = dict_get_value(g_env, var);
+	value = dict_get_value(g_mshell->env, var);
 	if (value)
 	{
 		temp = str_replace(str, var, value, *i + 1);

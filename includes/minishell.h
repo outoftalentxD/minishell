@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 15:18:27 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/01 17:25:42 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@
 # define UNSET_FEW_ARGS_ERROR 5001
 # define UNSET_KEY_CONTENT_ERROR 5002
 
-extern t_dict	*g_env;
+# define CD_TOO_MANY_ARGS_ERROR 2001
+# define CD_WORNG_PATH_ERROR 2002
+
+extern t_mshell	*g_mshell;
 
 #endif

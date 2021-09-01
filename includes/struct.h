@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 15:10:02 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/01 17:21:39 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_dict
 typedef struct s_mshell
 {
 	struct s_dict	*env;
+	char			*oldpwd;
 }	t_mshell;
 
 #endif

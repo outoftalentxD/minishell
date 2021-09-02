@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/02 12:42:33 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/02 17:54:05 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int is_right_path(char *path, int opt)
 	{
 		if (fd == -1 && !dir)
 			throw_error_binary(path, BIN_NO_FILE_OR_DIR_ERROR);
-		else if (fd =! -1 && !dir)
+		else if (fd != -1 && !dir)
 			throw_error_binary(path, BIN_PERMISSION_DENIED_ERROR);
 		else if (fd == -1 && dir)
 			throw_error_binary(path, BIN_IS_DIR_ERROR);
@@ -77,7 +77,7 @@ static int		bin_find_in_dir(char *name, char *path)
 	dir = opendir(path);
 	if (!dir)
 		return (0);
-	while (elem = readdir(dir))
+	while ((elem = readdir(dir)))
 	{
 		if (!ft_strcmp(elem->d_name, name))
 			return (1);

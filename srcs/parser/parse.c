@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/30 16:38:20 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/02 17:43:59 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	preparse(char **strs)
 			if (process_squote(str, &i))
 				return (-1);
 		}
-		else if (str[i] == '\\')
-			ft_squeeze(str, i);
+		// else if (str[i] == '\\')
+		// 	ft_squeeze(str, i);
 		else if (str[i] == '"')
 		{
 			if (process_dquote(&str, &i))
@@ -45,5 +45,5 @@ int	preparse(char **strs)
 
 char **parse(char *line)
 {
-	
+	return (0);
 }

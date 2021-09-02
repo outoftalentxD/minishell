@@ -30,6 +30,7 @@ OBJS = $(SRCS:.c=.o)
 LIBFT_HEADER = ./libft/libft.h
 LIBFT = ./libft/libft.a
 LIBFT_FLAGS = -L=libft -lft
+MAC_LIBFT_FLAGS = -L libft -lft
 
 EXTLIB_FLAGS = -ltermcap -lreadline
 
@@ -45,7 +46,7 @@ $(LIBFT):
 all: $(NAME)
 
 minishell: $(OBJS) $(LIBFT) $(HEADER) 
-	$(CC) $(OBJS) $(LIBFT_FLAGS) $(EXTLIB_FLAGS) -o $@
+	$(CC) $(OBJS) $(MAC_LIBFT_FLAGS) $(EXTLIB_FLAGS) -o $@
 
 clean:
 	$(RM) $(OBJS)

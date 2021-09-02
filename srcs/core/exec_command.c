@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:16:25 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/01 21:43:10 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/02 00:10:43 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ int	exec_command(char **args)
 	if (is_builtin(args[0]))
 		exec_builtin(args);
 	else
-	{
-		ft_putstr_fd(args[0], STDOUT_FILENO);
-		ft_putstr_fd(": command not found\n", STDOUT_FILENO);
-		return (-1);
-	}
+		exec_binary(args, g_mshell->envp);
 	return (0);
+
 }

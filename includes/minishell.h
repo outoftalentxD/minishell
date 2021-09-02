@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/01 17:25:42 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/02 11:27:34 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@
 
 # define CD_TOO_MANY_ARGS_ERROR 2001
 # define CD_WORNG_PATH_ERROR 2002
+
+# define BIN_COMMAND_NOT_FOUND 8001
+# define BIN_NO_FILE_OR_DIR_ERROR 8002
+# define BIN_PERMISSION_DENIED_ERROR 8003
+# define BIN_IS_DIR_ERROR 8004
+# define BIN_ERROR_CODE 8000
 
 extern t_mshell	*g_mshell;
 

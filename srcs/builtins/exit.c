@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 21:37:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/01 21:42:21 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/01 23:43:41 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 int	bi_exit(void)
 {
 	printf("exit(0) commented\n");
+	//tut vse chistim i vihodim)
 	//exit(0);
 }

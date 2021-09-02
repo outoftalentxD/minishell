@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/02 18:35:36 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/02 18:58:21 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,5 @@ int exec_binary(char **args, char **envp)
 			return (throw_error_binary(name, BIN_COMMAND_NOT_FOUND));
 		execve(path, args, envp);
 	}
-	return (0);
+	return (CD_TOO_MANY_ARGS_ERROR);
 }

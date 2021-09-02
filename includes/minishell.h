@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/02 11:27:34 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/02 19:00:49 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <signal.h>
 # include <errno.h>
 # include <sys/wait.h>
+# include <sys/types.h>
 # include <limits.h>
 # include <readline/readline.h>
 # include <readline/history.h>

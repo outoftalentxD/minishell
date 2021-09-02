@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 15:07:46 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/01 17:24:28 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/02 18:33:48 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ int	bi_echo(char **args)
 	}
 	if (!n_opt)
 		ft_putstr_fd("\n", STDOUT_FILENO);
+	return (0);
 }

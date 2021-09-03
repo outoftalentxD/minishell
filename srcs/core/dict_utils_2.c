@@ -6,13 +6,13 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 15:26:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/02 18:33:19 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 21:08:08 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int dict_change_value_dup(t_dict *elem, char *value)
+int	dict_change_value_dup(t_dict *elem, char *value)
 {
 	if (!elem)
 		return (0);
@@ -21,7 +21,7 @@ int dict_change_value_dup(t_dict *elem, char *value)
 	return (0);
 }
 
-int dict_change_value(t_dict *elem, char *value)
+int	dict_change_value(t_dict *elem, char *value)
 {
 	if (!elem)
 		return (0);

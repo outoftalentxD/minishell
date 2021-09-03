@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 20:35:13 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 21:06:34 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	preparse(char **strs)
 			if (process_squote(str, &i))
 				return (EXIT_FAILURE);
 		}
-		// else if (str[i] == '\\')
-		// 	ft_squeeze(str, i);
 		else if (str[i] == '"')
 		{
 			if (process_dquote(&str, &i))
@@ -95,20 +93,20 @@ t_sect	*parse(char *line)
 	t_sect	*sect;
 	char	*args;
 	int		i;
-	int		len;
 	int		sect_len;
 
 	i = 0;
 	sect = 0;
-	len = ft_strlen(line);
-	while (i < len)
+	while (line[i])
 	{
-		if (line[i] == ' ')
+		while (line[i] == ' ')
 			i++;
 		sect_len = get_section_len(line, i, " <>|");
 		sect_add_elem(&sect, sect_sub_elem(line, i, sect_len));
 		i += sect_len - 1;
 		i++;
+		while (line[i] == ' ')
+			i++;
 	}
 	sect_merge(&sect);
 	sect_set_type_to_all(sect);

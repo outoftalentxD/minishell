@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:21:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 20:19:35 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 21:07:06 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,31 @@ int	get_section_len(char *str, int start, char *set)
 	if (min <= 1)
 		min = 1;
 	return (min);
+}
+
+char	**sect_form_args(t_sect *sect)
+{
+	char	**args;
+	int		size;
+	t_sect	*elem;
+	int		i;
+
+	elem = sect;
+	size = 0;
+	while (elem && !sect_type_is_pipe(elem))
+	{
+		if (elem->type == SECT_TYPE_ARG || elem->type == SECT_TYPE_CMD)
+			size++;
+		elem = elem->next;
+	}
+	args = ft_calloc(size + 1, sizeof(char *));
+	i = 0;
+	args[size] = 0;
+	while (i < size && sect)
+	{
+		if (sect->type == SECT_TYPE_ARG || sect->type == SECT_TYPE_CMD)
+			args[i++] = sect->content;
+		sect = sect->next;
+	}
+	return (args);
 }

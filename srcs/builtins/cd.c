@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 02:56:50 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/01 21:40:39 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 21:12:07 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ static int	update_pwd(t_dict *env)
 
 static int	update_oldpwd(char *path, t_dict *env)
 {
-	t_dict *elem;
+	t_dict	*elem;
 
 	elem = dict_get_elem(env, "OLDPWD");
 	if (!elem)
-		dict_add_elem(&env, dict_init_elem(ft_strdup("OLDPWD"), ft_strdup(path)));
+		dict_add_elem(&env, dict_init_elem(ft_strdup("OLDPWD"),
+				ft_strdup(path)));
 	else
 		dict_change_value_dup(elem, path);
 	if (g_mshell->oldpwd)
@@ -63,7 +64,7 @@ static int	update_oldpwd(char *path, t_dict *env)
 	}
 	else
 		g_mshell->oldpwd = ft_strdup(path);
-	return (0);		
+	return (0);
 }
 
 int	bi_cd(char **args, t_dict *env)

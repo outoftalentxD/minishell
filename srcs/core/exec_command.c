@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:16:25 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 18:13:34 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 21:07:58 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	is_builtin(char *arg)
 		return (0);
 }
 
-static int exec_builtin(char **args)
+static int	exec_builtin(char **args)
 {
 	if (!ft_strcmp(args[0], "echo"))
 		bi_echo(args);
@@ -56,22 +56,21 @@ int	exec_command(char **args)
 	char	*command;
 	pid_t	pid;
 	int		code;
-	
+
 	if (is_builtin(args[0]))
 		exec_builtin(args);
 	else
 	{
 		pid = fork();
-		if (pid == -1)	
+		if (pid == -1)
 			perror("fork: ");
 		else if (pid == 0)
 		{
 			code = exec_binary(args, g_mshell->envp);
 			exit(code);
 		}
-		else 
+		else
 			wait(0);
 	}
 	return (0);
-
 }

@@ -6,13 +6,13 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/02 18:58:21 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 21:10:36 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int throw_error_binary(char *path, int code)
+static int	throw_error_binary(char *path, int code)
 {
 	char	*error;
 
@@ -28,7 +28,7 @@ static int throw_error_binary(char *path, int code)
 	return (BIN_ERROR_CODE);
 }
 
-static int is_right_path(char *path, int opt)
+static int	is_right_path(char *path, int opt)
 {
 	int		fd;
 	DIR		*dir;
@@ -57,6 +57,7 @@ static int is_right_path(char *path, int opt)
 	closedir(dir);
 	return (code);
 }
+
 static char	*bin_form_path(char *name, char *path)
 {
 	char	*temp;
@@ -68,7 +69,7 @@ static char	*bin_form_path(char *name, char *path)
 	return (ret);
 }
 
-static int		bin_find_in_dir(char *name, char *path)
+static int	bin_find_in_dir(char *name, char *path)
 {
 	struct dirent	*elem;
 	DIR				*dir;
@@ -95,7 +96,7 @@ static char	*bin_find_in_path(char *name, t_dict *env)
 	value = dict_get_value(env, "PATH");
 	if (!value)
 		return (0);
-	paths = ft_split(value, ':');	
+	paths = ft_split(value, ':');
 	i = 0;
 	while (paths[i])
 	{
@@ -116,8 +117,6 @@ int exec_binary(char **args, char **envp)
 	name = args[0];
 	if (ft_strchr(args[0], '/'))
 	{
-		// if (is_right_path(path, 'd'))
-			// return (BIN_ERROR_CODE);
 		if (execve(name, args, envp))
 		{
 			perror("minishell");

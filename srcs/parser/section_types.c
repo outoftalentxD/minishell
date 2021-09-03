@@ -6,13 +6,13 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 20:18:31 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 20:22:22 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 20:25:17 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int sect_type_is_pipe(t_sect *elem)
+int	sect_type_is_pipe(t_sect *elem)
 {
 	if (elem->type == SECT_TYPE_PIPE)
 		return (1);
@@ -25,13 +25,13 @@ int	sect_set_type_to_arg(t_sect *elem)
 	return (0);
 }
 
-int sect_is_specified(t_sect *elem)
+int	sect_is_specified(t_sect *elem)
 {
-	if (elem->type == SECT_TYPE_IN_DLM ||
-		elem->type == SECT_TYPE_OUT ||
-		elem->type == SECT_TYPE_OUT_AP ||
-		elem->type == SECT_TYPE_PIPE ||
-		elem->type == SECT_TYPE_IN)
+	if (elem->type == SECT_TYPE_IN_DLM
+		|| elem->type == SECT_TYPE_OUT
+		|| elem->type == SECT_TYPE_OUT_AP
+		|| elem->type == SECT_TYPE_PIPE
+		|| elem->type == SECT_TYPE_IN)
 		return (1);
 	else
 		return (0);

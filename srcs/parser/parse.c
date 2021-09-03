@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 17:41:23 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 18:18:26 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,5 @@ t_sect  *parse(char *line)
 		i++;
 	}
 	sect_merge(&sect);
-	print_sections(sect);
-	
-	return (0);
+	return (sect);
 }

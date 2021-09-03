@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 21:37:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/02 18:33:32 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 17:53:13 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	bi_exit(void)
 {
-	printf("exit(0) commented\n");
+	//printf("exit(0) commented\n");
 	//tut vse chistim i vihodim)
-	//exit(0);
+	exit(0);
 	return (0);
 }

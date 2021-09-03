@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 14:26:55 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/01 19:04:20 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 17:42:47 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_free_args(char **args)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (args[++i])
@@ -29,4 +29,12 @@ int	ft_isenvkey(int c)
 		return (1);
 	else
 		return (0);
+}
+
+int	get_next_char_pos(char *line, int start, int c)
+{
+	start++;
+	while (line[start] && line[start] != c)
+		start++;
+	return (start);
 }

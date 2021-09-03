@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 12:20:09 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 17:41:23 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,67 @@ int	preparse(char **strs)
 	return (0);
 }
 
+static void	print_sections(t_sect *sect)
+{
+	while(sect)
+	{
+		printf("%s\n", sect->content);
+		sect = sect->next;
+	}
+}
+
+int	sect_merge(t_sect **sect)
+{
+	t_sect	*elem;
+
+	elem = *sect;
+	while (elem->next)
+	{
+		if (!ft_strcmp(elem->content, ">"))
+		{
+			if (!ft_strcmp(elem->next->content, ">"))
+			{
+				sect_del_elem(sect, elem->next);
+				free(elem->content);
+				elem->content = ft_strdup(">>");
+			}
+		}
+		else if (!ft_strcmp(elem->content, "<"))
+		{
+			if (!ft_strcmp(elem->next->content, "<"))
+			{
+				sect_del_elem(sect, elem->next);
+				free(elem->content);
+				elem->content = ft_strdup("<<");
+			}
+		}
+		elem = elem->next;
+	}
+	return (0);
+}
+
 t_sect  *parse(char *line)
 {
 	t_sect	*sect;
 	char	*args;
+	int		i;
+	int		len;
+	int		sect_len;
 	
-	args = ft_split(line, ' ');
-	sect = init_sections(args);	
+	i = 0;
+	sect = 0;
+	len = ft_strlen(line);
+	while (i < len)
+	{
+		if (line[i] == ' ')
+			i++;
+		sect_len = get_section_len(line, i, " <>|");
+		sect_add_elem(&sect, sect_sub_elem(line, i, sect_len));
+		i += sect_len - 1;
+		i++;
+	}
+	sect_merge(&sect);
+	print_sections(sect);
+	
 	return (0);
 }

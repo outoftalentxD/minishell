@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/02 19:31:03 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 18:20:01 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		line = readline("minishell$ ");
+
 		if (!line)
 			return (0);
 		add_history(line);
+		g_mshell->line = parse(line);
 		args = ft_split(line, ' ');
 		i = 0;
 		while (args[i])

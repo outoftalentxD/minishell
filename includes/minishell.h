@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/02 19:00:49 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 18:03:02 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@
 # define BIN_PERMISSION_DENIED_ERROR 8003
 # define BIN_IS_DIR_ERROR 8004
 # define BIN_ERROR_CODE 8000
+
+# define EXIT_NOT_NUM_ARG_ERROR 9001
+# define EXIT_TOO_MANY_ARGS_ERROR 9002
 
 extern t_mshell	*g_mshell;
 

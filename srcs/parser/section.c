@@ -1,60 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dict_utils.c                                       :+:      :+:    :+:   */
+/*   section.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/28 03:13:48 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 12:23:57 by melaena          ###   ########.fr       */
+/*   Created: 2021/09/03 12:20:19 by melaena           #+#    #+#             */
+/*   Updated: 2021/09/03 12:35:07 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*dict_get_value(t_dict *dict, char *key)
+t_sect	*sect_init_elem(char *content)
 {
-	t_dict	*elem;
+	t_sect	*elem;
 
-	elem = dict_get_elem(dict, key);
+	elem = ft_calloc(1, sizeof(t_sect));
 	if (!elem)
 		return (0);
-	return (elem->value);
-}
-
-t_dict	*dict_get_elem(t_dict *dict, char *key)
-{
-	while (dict)
-	{
-		if (!ft_strcmp(dict->key, key))
-			return (dict);
-		dict = dict->next;
-	}
-	return (0);
-}
-
-t_dict	*dict_init_elem(char *key, char *value)
-{
-	t_dict	*elem;
-
-	elem = ft_calloc(1, sizeof(t_dict));
-	if (!elem)
-		return (0);
-	elem->key = key;
-	elem->value = value;
+	elem->content = content;
+	elem->type = 0;
 	elem->next = 0;
 	elem->prev = 0;
 	return (elem);
 }
 
-int	dict_add_elem(t_dict **dict, t_dict *elem)
+int	sect_add_elem(t_sect **sect, t_sect *elem)
 {
-	t_dict	*temp;
+	t_sect	*temp;
 
-	temp = *dict;
+	temp = *sect;
 	if (!temp)
 	{
-		*dict = elem;
+		*sect = elem;
 		return (0);
 	}
 	while (temp->next)
@@ -62,4 +41,41 @@ int	dict_add_elem(t_dict **dict, t_dict *elem)
 	temp->next = elem;
 	elem->prev = temp;
 	return (0);
+}
+
+int	sect_split_elem(t_sect **sect)
+{
+	char	*content;
+	t_sect	*elem;
+	int		i;
+
+	i = 0;
+	elem = *sect;
+	content = elem->content;
+	while (content[i])
+	{
+		if (content[i] == '|')
+		{
+			sect_split_elem_pipe(elem);
+			return (0);
+		}
+		i++;
+
+	}
+}
+
+int	process_sections(t_sect **sect)
+{
+	t_sect	*elem;
+	int		i;
+	
+	elem = *sect;
+	if (!elem)
+		return (0);
+	while (elem)
+	{
+		sect_split_elem()
+		elem = elem->next;
+	}
+
 }

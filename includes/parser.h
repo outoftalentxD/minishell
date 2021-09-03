@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:38:37 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/30 16:37:54 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 12:27:34 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,10 @@ char	*process_envvar(char *str, int *i);
 /*quotes*/
 int		process_squote(char *str, int *i);
 int		process_dquote(char **str, int *i);
+
+/*sections*/
+t_sect	*sect_init_elem(char *content);
+int		sect_add_elem(t_sect **sect, t_sect *elem);
+t_sect	*init_sections(char **args);
 
 #endif

@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   section_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 18:56:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 12:18:08 by melaena          ###   ########.fr       */
+/*   Created: 2021/09/03 12:21:43 by melaena           #+#    #+#             */
+/*   Updated: 2021/09/03 12:39:02 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "minishell.h"
 
-# include "minishell.h"
-
-typedef struct s_dict
+int	sect_split_elem_pipe(t_sect *elem, int i)
 {
-	char			*key;
-	char			*value;
-	struct s_dict	*next;
-	struct s_dict	*prev;
-}	t_dict;	
-
-typedef struct s_mshell
-{
-	struct s_dict	*env;
-	char			*oldpwd;
-	char			**envp;
-}	t_mshell;
-
-typedef struct s_section
-{
-	struct s_section	*next;
-	struct s_section	*prev;
-	char				*content;
-	int					type;
-}	t_sect;
-
-#endif
+	char	*head;
+	char	*mid;
+	char	*tail;
+	t_sect	*temp;
+	
+	head = ft_substr(elem->content, 0, i);
+	mid = ft_strdup()
+}

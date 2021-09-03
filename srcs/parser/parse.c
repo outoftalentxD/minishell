@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 18:24:04 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/03 20:12:51 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	preparse(char **strs)
 	return (0);
 }
 
-static void	print_sections(t_sect *sect)
+void	print_sections(t_sect *sect)
 {
 	while(sect)
 	{
-		printf("%s\n", sect->content);
+		printf("content: %s $ type: %d\n", sect->content, sect->type);
 		sect = sect->next;
 	}
 }
@@ -103,7 +103,6 @@ t_sect  *parse(char *line)
 		i++;
 	}
 	sect_merge(&sect);
-	print_sections(sect);
-	
-	return (0);
+	sect_set_type_to_all(sect);
+	return (sect);
 }

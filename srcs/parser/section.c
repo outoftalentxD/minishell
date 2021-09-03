@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:20:19 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 17:43:18 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 20:18:53 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,12 @@ int	sect_del_elem(t_sect **sect, t_sect *elem)
 	return (0);
 }
 
-int	process_sections(t_sect **sect)
+t_sect	*sect_sub_elem(char *str, int start, int len)
 {
 	t_sect	*elem;
-	int		i;
 
-	elem = *sect;
+	elem = sect_init_elem(ft_substr(str, start, len));
 	if (!elem)
 		return (0);
-	return (0);
+	return (elem);
 }

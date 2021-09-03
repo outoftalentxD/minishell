@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 18:03:02 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 19:59:02 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@
 # include "struct.h"
 # include "parser.h"
 # include "core.h"
+
+# define SECT_TYPE_PIPE 100001
+# define SECT_TYPE_OUT 100002
+# define SECT_TYPE_OUT_AP 100003
+# define SECT_TYPE_IN 100004
+# define SECT_TYPE_IN_DLM 100005
+# define SECT_TYPE_ARG 100006
+# define SECT_TYPE_CMD 100007
 
 # define EXPORT_KEY_CONTENT_ERROR 4001
 # define EXPORT_KEY_NULL_ERROR 4002

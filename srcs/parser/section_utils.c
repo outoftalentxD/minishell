@@ -6,21 +6,11 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:21:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 17:57:59 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 20:19:35 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_sect	*sect_sub_elem(char *str, int start, int len)
-{
-	t_sect	*elem;
-
-	elem = sect_init_elem(ft_substr(str, start, len));
-	if (!elem)
-		return (0);
-	return (elem);
-}
 
 static int	sect_set_quotes_flag(int c, int *flag)
 {

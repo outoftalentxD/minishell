@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:09:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 18:20:05 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 20:23:18 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,6 @@ t_mshell	*init_mshell(char **env)
 	shell->env = init_env(env);
 	shell->envp = env;
 	shell->oldpwd = 0;
-	shell->line = 0;
+	shell->sect = 0;
 	return (shell);
-}
-
-t_sect	*init_sections(char **args)
-{
-	int		i;
-	t_sect	*sect;
-	
-	i = 0;
-	sect = 0;
-	while (args[i])
-	{
-		sect_add_elem(&sect, sect_init_elem(args[i]));
-		i++;
-	}
-	return (sect);
 }

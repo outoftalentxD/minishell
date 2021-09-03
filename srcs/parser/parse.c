@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 20:12:51 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/03 20:35:13 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,45 @@ int	preparse(char **strs)
 	str = *strs;
 	i = -1;
 	if (!str)
-		return (0);
+		return (EXIT_FAILURE);
 	while (str[++i])
 	{
 		if (str[i] == '\'')
 		{
 			if (process_squote(str, &i))
-				return (-1);
+				return (EXIT_FAILURE);
 		}
 		// else if (str[i] == '\\')
 		// 	ft_squeeze(str, i);
 		else if (str[i] == '"')
 		{
 			if (process_dquote(&str, &i))
-				return (-1);
+				return (EXIT_FAILURE);
 		}
 		else if (str[i] == '$')
 			str_change(&str, process_envvar(str, &i));
 		*strs = str;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 void	print_sections(t_sect *sect)
 {
-	while(sect)
+	while (sect)
 	{
-		printf("content: %s $ type: %d\n", sect->content, sect->type);
+		printf("content: /%s/\n", sect->content);
 		sect = sect->next;
 	}
+}
+
+int	process_sections(t_sect *sect)
+{
+	while (sect)
+	{
+		preparse(&sect->content);
+		sect = sect->next;
+	}
+	return (EXIT_SUCCESS);
 }
 
 int	sect_merge(t_sect **sect)
@@ -64,8 +74,7 @@ int	sect_merge(t_sect **sect)
 			if (!ft_strcmp(elem->next->content, ">"))
 			{
 				sect_del_elem(sect, elem->next);
-				free(elem->content);
-				elem->content = ft_strdup(">>");
+				str_change(&elem->content, ft_strdup(">>"));
 			}
 		}
 		else if (!ft_strcmp(elem->content, "<"))
@@ -73,23 +82,22 @@ int	sect_merge(t_sect **sect)
 			if (!ft_strcmp(elem->next->content, "<"))
 			{
 				sect_del_elem(sect, elem->next);
-				free(elem->content);
-				elem->content = ft_strdup("<<");
+				str_change(&elem->content, ft_strdup("<<"));
 			}
 		}
 		elem = elem->next;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
-t_sect  *parse(char *line)
+t_sect	*parse(char *line)
 {
 	t_sect	*sect;
 	char	*args;
 	int		i;
 	int		len;
 	int		sect_len;
-	
+
 	i = 0;
 	sect = 0;
 	len = ft_strlen(line);
@@ -104,5 +112,6 @@ t_sect  *parse(char *line)
 	}
 	sect_merge(&sect);
 	sect_set_type_to_all(sect);
+	process_sections(sect);
 	return (sect);
 }

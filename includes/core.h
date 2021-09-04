@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 18:08:37 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/04 17:37:35 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ int			exec_binary(char **args, char **envp);
 /* utils */
 int			get_args_size(char **args);
 int			ft_free_args(char **args);
+
+/* pipex */
+void pipex(t_sect *elem);
 
 #endif

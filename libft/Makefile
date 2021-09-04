@@ -29,7 +29,7 @@ OBJS = ${SRCS:.c=.o}
 
 OBJSB = ${SRCSB: .c=.o}
 
-INCLUDE = libft.h
+INCLUDE = .
 
 CC = gcc
 

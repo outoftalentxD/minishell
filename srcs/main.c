@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 21:12:21 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/04 18:07:49 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	main(int argc, char **argv, char **env)
 		add_history(line);
 		elem = parse(line);
 		args = sect_form_args(elem);
+		while(elem)
+		{
+			if (elem->type == SECT_TYPE_PIPE)
+				pipex(elem);
+			elem = elem->next;
+		}
 		exec_command(args);
 	}
 }

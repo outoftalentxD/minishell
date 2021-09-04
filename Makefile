@@ -19,11 +19,13 @@ MAIN = main
 PARSER = parse quotes utils_1 utils_2 section section_utils section_types
 CORE = init dict_utils dict_utils_2 exec_command binary 
 BUILTINS = echo pwd env export cd unset exit
+PIPEX = pipex
 
 SRCS =	$(addsuffix .c, $(addprefix srcs/, $(MAIN))) \
 		$(addsuffix .c, $(addprefix srcs/parser/, $(PARSER))) \
 		$(addsuffix .c, $(addprefix srcs/core/, $(CORE))) \
 		$(addsuffix .c, $(addprefix srcs/builtins/, $(BUILTINS))) \
+		$(addsuffix .c, $(addprefix srcs/pipex/, $(PIPEX))) \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -46,7 +48,7 @@ $(LIBFT):
 all: $(NAME)
 
 minishell: $(OBJS) $(LIBFT) $(HEADER) 
-	$(CC) $(OBJS) $(MAC_LIBFT_FLAGS) $(EXTLIB_FLAGS) -o $@
+	$(CC) $(OBJS) $(LIBFT_FLAGS) $(EXTLIB_FLAGS) -o $@
 
 clean:
 	$(RM) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:09:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 20:23:18 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 02:40:25 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ t_dict	*init_env(char **env)
 	return (denv);
 }
 
+t_sig		*init_signal(void)
+{
+	t_sig	*signal;
+
+	signal = ft_calloc(1, sizeof(t_sig));
+	if (!signal)
+		return (0);
+	signal->sigint = 1;
+	return (signal);
+}
+
 t_mshell	*init_mshell(char **env)
 {
 	t_mshell	*shell;
@@ -48,5 +59,6 @@ t_mshell	*init_mshell(char **env)
 	shell->envp = env;
 	shell->oldpwd = 0;
 	shell->sect = 0;
+	shell->signal = init_signal();
 	return (shell);
 }

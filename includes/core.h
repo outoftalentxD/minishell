@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/04 17:37:35 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/05 02:44:23 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int 		dict_change_value_dup(t_dict *elem, char *value);
 /* enviroment utils */
 t_dict		*init_env(char **env);
 t_mshell	*init_mshell(char **env);
+t_sig		*init_signal(void);
 
 /* core funcs */
 int			exec_command(char **argv);
@@ -41,12 +42,16 @@ int			bi_export(char **args, t_dict *env);
 int			bi_cd(char **args, t_dict *env);
 int			bi_unset(char **args, t_dict **env);
 int			bi_exit(char **args);
+
 /* binary */
 int			exec_binary(char **args, char **envp);
 
 /* utils */
 int			get_args_size(char **args);
 int			ft_free_args(char **args);
+
+/* signal */
+void		sig_handler(int signum);
 
 /* pipex */
 void pipex(t_sect *elem);

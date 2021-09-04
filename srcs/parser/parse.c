@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 21:06:34 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 02:13:17 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,11 @@ t_sect	*parse(char *line)
 		while (line[i] == ' ')
 			i++;
 	}
-	sect_merge(&sect);
-	sect_set_type_to_all(sect);
-	process_sections(sect);
+	if (sect)
+	{
+		sect_merge(&sect);
+		sect_set_type_to_all(sect);
+		process_sections(sect);
+	}
 	return (sect);
 }

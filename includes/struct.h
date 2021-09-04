@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 19:50:51 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 02:40:30 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_mshell
 {
 	struct s_dict		*env;
 	struct s_section	*sect;
+	struct s_signal		*signal;
 	char				*oldpwd;
 	char				**envp;
 }	t_mshell;
@@ -38,5 +39,10 @@ typedef struct s_section
 	char				*content;
 	int					type;
 }	t_sect;
+
+typedef struct s_signal
+{
+	int	sigint;
+}	t_sig;
 
 #endif

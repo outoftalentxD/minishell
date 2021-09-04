@@ -13,7 +13,7 @@ t_sect *search_prev_cmd(t_sect *elem)
 	return (NULL);
 }
 
-void child_process(int *fd, t_sect *elem)
+void child1_process(int *fd, t_sect *elem)
 {
 	char **args;
 	dup2(fd[1], 1);
@@ -23,13 +23,10 @@ void child_process(int *fd, t_sect *elem)
 	exit(EXIT_FAILURE);
 }
 
-void parent_process(int *fd, t_sect *elem)
+void child2_process(int *fd, t_sect *elem)
 {
-	int status;
 	char **args;
 
-	status = 0;
-	waitpid(-1, &status, 0);
 	dup2(fd[0], 0);
 	close(fd[1]);
 	args = sect_form_args(elem->next);
@@ -40,12 +37,20 @@ void parent_process(int *fd, t_sect *elem)
 void pipex(t_sect *elem)
 {
 	int fd[2];
-	pid_t parent;
+	pid_t child1;
+	pid_t child2;
+	int status;
 
 	pipe(fd);
-	parent = fork();
-	if (!parent)
-		child_process(fd, elem);
-	else
-		parent_process(fd, elem);
+	status = 0;
+	child1 = fork();
+	if (child1 == 0)
+		child1_process(fd, elem);
+	child2 = fork();
+	if (child2 == 0)
+		child2_process(fd, elem);
+	close(fd[0]);
+	close(fd[1]);
+	waitpid(-1, &status, 0);
+	waitpid(-1, &status, 0);
 }

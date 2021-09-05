@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 12:14:52 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 18:12:42 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 20:07:34 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,37 @@ char	*str_replace(char *str, char *replace, char *to, int start)
 	return (new);
 }
 
+static char	*str_replace_qmark_var(char *str, int i, int *len)
+{
+	char	*temp;
+	char	*exit_status;
+
+	exit_status = ft_itoa(g_mshell->exit_status);
+	temp = str_replace(str, "?", exit_status, i + 1);
+	*len = ft_strlen(exit_status);
+	return (temp);
+}
+
 char	*process_envvar(char *str, int *i)
 {
 	int		len;
 	char	*var;
 	char	*temp;
 	char	*value;
-	int		j;
 
-	j = *i + 1;
 	len = 0;
-	while (ft_isenvkey(str[j++]))
+	while (ft_isenvkey(str[*i + 1 + len]))
 		len++;
 	var = ft_substr(str, *i + 1, len);
 	value = dict_get_value(g_mshell->env, var);
+	len = 0;
 	if (value)
 	{
 		temp = str_replace(str, var, value, *i + 1);
 		len = ft_strlen(value);
 	}
 	else if (!value && str[*i + 1] == '?')
-		temp = str_replace(str, "?", ft_itoa(g_mshell->exit_status), *i + 1);
+		temp = str_replace_qmark_var(str, *i, &len);
 	else
 		temp = str_replace(str, var, "", *i + 1);
 	ft_squeeze(temp, *i);

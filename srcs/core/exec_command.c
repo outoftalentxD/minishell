@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:16:25 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 18:59:58 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 20:09:38 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	exec_command(char **args)
 {
 	char	*command;
 	pid_t	pid;
-	int		code;
+	int status;
 
+
+	status = 0;
 	if (is_builtin(args[0]))
 		exec_builtin(args);
 	else
@@ -67,12 +69,9 @@ int	exec_command(char **args)
 		if (pid == -1)
 			perror("fork: ");
 		else if (pid == 0)
-		{
-			code = exec_binary(args, g_mshell->envp);
-			exit(code);
-		}
+			exec_binary(args, g_mshell->envp);
 		else
-			wait(0);
+			waitpid(-1, &status, 0);
 	}
-	return (0);
+	return (WEXITSTATUS(status));
 }

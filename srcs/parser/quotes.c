@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 12:14:36 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/29 12:19:42 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 19:23:28 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	process_dquote(char **strs, int *i)
 		if (!str[j])
 		{
 			ft_putstr_fd("Bad sequence of double quotes\n", STDERR_FILENO);
-			return (-1);
+			return (EXIT_FAILURE);
 		}
 		j++;
 	}
@@ -57,7 +57,7 @@ int	process_dquote(char **strs, int *i)
 	ft_squeeze(temp, *i);
 	*strs = temp;
 	*i = j - 2;
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	process_squote(char *str, int *i)
@@ -72,10 +72,10 @@ int	process_squote(char *str, int *i)
 		{
 			ft_squeeze(str, j);
 			*i = j - 1;
-			return (0);
+			return (EXIT_SUCCESS);
 		}
 		j++;
 	}
 	ft_putstr_fd("Bad sequence of single quotes\n", STDERR_FILENO);
-	return (-1);
+	return (EXIT_FAILURE);
 }

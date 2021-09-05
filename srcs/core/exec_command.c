@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:16:25 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 20:09:38 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/05 20:20:57 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	exec_command(char **args)
 	pid_t	pid;
 	int status;
 
-
 	status = 0;
 	if (is_builtin(args[0]))
 		exec_builtin(args);
@@ -73,5 +72,5 @@ int	exec_command(char **args)
 		else
 			waitpid(-1, &status, 0);
 	}
-	return (WEXITSTATUS(status));
+	return (set_exit_status(WEXITSTATUS(status)));
 }

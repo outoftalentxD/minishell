@@ -1,40 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/30 14:26:55 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 18:26:40 by melaena          ###   ########.fr       */
+/*   Created: 2021/09/05 18:26:48 by melaena           #+#    #+#             */
+/*   Updated: 2021/09/05 18:36:04 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_free_args(char **args)
+int	set_exit_status(int status)
 {
-	int	i;
-
-	i = -1;
-	while (args[++i])
-		free(args[i]);
-	free(args);
-	return (0);
-}
-
-int	ft_isenvkey(int c)
-{
-	if (ft_isalnum(c) || c == '_')
-		return (1);
-	else
-		return (0);
-}
-
-int	get_next_char_pos(char *line, int start, int c)
-{
-	start++;
-	while (line[start] && line[start] != c)
-		start++;
-	return (start);
+	g_mshell->exit_status = status;
+	return (status);
 }

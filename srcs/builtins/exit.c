@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 21:37:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 16:50:39 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 18:44:53 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	throw_error_exit(char *arg, int code)
 		ft_putendl_fd(": numeric argument required", STDERR_FILENO);
 		exit(2);
 	}
-	g_mshell->exit_status = 127;
+	set_exit_status(127);
 	return (code);
 }
 
@@ -49,5 +49,5 @@ int	bi_exit(char **args)
 	if (size > 2)
 		return (throw_error_exit(0, EXIT_TOO_MANY_ARGS_ERROR));
 	exit(code);
-	return (0);
+	return (EXIT_SUCCESS);
 }

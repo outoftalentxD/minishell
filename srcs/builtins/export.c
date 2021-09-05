@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:36:49 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/01 23:49:13 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 18:48:20 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	throw_error_export(char **content, int code)
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		ft_putstr_fd(content[1], STDERR_FILENO);
 		ft_putendl_fd(" not found", STDERR_FILENO);
+		return (set_exit_status(130));
 	}
 	else
 	{
@@ -32,7 +33,7 @@ static int	throw_error_export(char **content, int code)
 		ft_putendl_fd(content[0], STDERR_FILENO);
 	}
 	ft_free_args(content);
-	return (0);
+	return (set_exit_status(EXIT_FAILURE));
 }
 
 static int	env_key_is_valid(char *key)
@@ -86,7 +87,7 @@ int	bi_export(char **args, t_dict *env)
 
 	size = get_args_size(args);
 	if (size == 1)
-		return (bi_env(env));
+		return (bi_env(env, args));
 	content = split_env_elem(args[1]);
 	code = env_key_is_valid(content[0]);
 	if (code)
@@ -101,5 +102,5 @@ int	bi_export(char **args, t_dict *env)
 	else
 		dict_add_elem(&env, dict_init_elem(ft_strdup(content[0]), value));
 	ft_free_args(content);
-	return (0);
+	return (set_exit_status(EXIT_SUCCESS));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/04 17:06:58 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/05 18:42:05 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,16 @@
 # define SECT_TYPE_ARG 100006
 # define SECT_TYPE_CMD 100007
 
+# define PWD_TOO_MANY_ARGS_ERROR 3001
+
 # define EXPORT_KEY_CONTENT_ERROR 4001
 # define EXPORT_KEY_NULL_ERROR 4002
 # define EXPORT_KEY_DIGIT_ERROR 4003
 
 # define UNSET_FEW_ARGS_ERROR 5001
 # define UNSET_KEY_CONTENT_ERROR 5002
+
+# define ENV_TOO_MANY_ARGS_ERROR 6001
 
 # define CD_TOO_MANY_ARGS_ERROR 2001
 # define CD_WORNG_PATH_ERROR 2002

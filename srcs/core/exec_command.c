@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:16:25 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 21:07:58 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 18:59:58 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,23 @@ static int	is_builtin(char *arg)
 
 static int	exec_builtin(char **args)
 {
+	int	code;
+
 	if (!ft_strcmp(args[0], "echo"))
-		bi_echo(args);
+		code = bi_echo(args);
 	else if (!ft_strcmp(args[0], "pwd"))
-		bi_pwd();
+		code = bi_pwd(args);
 	else if (!ft_strcmp(args[0], "env"))
-		bi_env(g_mshell->env);
+		code = bi_env(g_mshell->env, args);
 	else if (!ft_strcmp(args[0], "export"))
-		bi_export(args, g_mshell->env);
+		code = bi_export(args, g_mshell->env);
 	else if (!ft_strcmp(args[0], "cd"))
-		bi_cd(args, g_mshell->env);
+		code = bi_cd(args, g_mshell->env);
 	else if (!ft_strcmp(args[0], "unset"))
-		bi_unset(args, &g_mshell->env);
+		code = bi_unset(args, &g_mshell->env);
 	else if (!ft_strcmp(args[0], "exit"))
-		bi_exit(args);
-	return (0);
+		code = bi_exit(args);
+	return (code);
 }
 
 int	exec_command(char **args)

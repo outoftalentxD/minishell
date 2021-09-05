@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 15:04:59 by melaena           #+#    #+#             */
-/*   Updated: 2021/08/31 16:04:54 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 18:58:49 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	throw_error_unset(char *arg, int code)
 	if (code != UNSET_FEW_ARGS_ERROR)
 		ft_putstr_fd(arg, STDERR_FILENO);
 	ft_putendl_fd(error, STDERR_FILENO);
-	return (0);
+	return (set_exit_status(EXIT_FAILURE));
 }
 
 static int	env_key_is_valid(char *key)
@@ -38,7 +38,7 @@ static int	env_key_is_valid(char *key)
 			return (UNSET_KEY_CONTENT_ERROR);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	bi_unset(char **args, t_dict **env)
@@ -61,9 +61,9 @@ int	bi_unset(char **args, t_dict **env)
 				return (throw_error_unset(args[i], code));
 			dict_del_by_key(env, args[i]);
 			if (!(env))
-				return (0);
+				return (EXIT_SUCCESS);
 			i++;
 		}
 	}
-	return (0);
+	return (set_exit_status(EXIT_SUCCESS));
 }

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 12:14:52 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/01 17:26:18 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 18:12:42 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ char	*process_envvar(char *str, int *i)
 		temp = str_replace(str, var, value, *i + 1);
 		len = ft_strlen(value);
 	}
+	else if (!value && str[*i + 1] == '?')
+		temp = str_replace(str, "?", ft_itoa(g_mshell->exit_status), *i + 1);
 	else
 		temp = str_replace(str, var, "", *i + 1);
 	ft_squeeze(temp, *i);

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 02:40:30 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:41:47 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_mshell
 	struct s_signal		*signal;
 	char				*oldpwd;
 	char				**envp;
+	int					exit_status;
 }	t_mshell;
 
 typedef struct s_section

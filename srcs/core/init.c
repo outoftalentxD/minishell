@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:09:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 02:40:25 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:47:29 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ t_mshell	*init_mshell(char **env)
 	shell->oldpwd = 0;
 	shell->sect = 0;
 	shell->signal = init_signal();
+	shell->exit_status = 0;
 	return (shell);
 }

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 02:56:50 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 21:12:07 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 13:05:03 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	throw_error_cd(char *path, int code)
 			ft_putendl_fd(path, STDERR_FILENO);
 		}
 	}
-	return (code);
+	return (EXIT_FAILURE);
 }
 
 static int	update_pwd(t_dict *env)
@@ -44,7 +44,7 @@ static int	update_pwd(t_dict *env)
 		dict_add_elem(&env, dict_init_elem(ft_strdup("PWD"), ft_strdup(path)));
 	else
 		dict_change_value_dup(elem, path);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	update_oldpwd(char *path, t_dict *env)
@@ -64,7 +64,7 @@ static int	update_oldpwd(char *path, t_dict *env)
 	}
 	else
 		g_mshell->oldpwd = ft_strdup(path);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	bi_cd(char **args, t_dict *env)
@@ -89,5 +89,5 @@ int	bi_cd(char **args, t_dict *env)
 		update_oldpwd(pwd, env);
 		update_pwd(env);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 13:27:17 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 13:31:16 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int exec_binary(char **args, char **envp)
 		if (execve(name, args, envp))
 		{
 			perror("minishell");
-			return (127);
+			return (BIN_NO_FILE_OR_DIR_ERROR);
 		}
 	}
 	else

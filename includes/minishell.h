@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 18:42:05 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 13:30:12 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@
 # define CD_WORNG_PATH_ERROR 2002
 
 # define BIN_COMMAND_NOT_FOUND 8001
-# define BIN_NO_FILE_OR_DIR_ERROR 8002
 # define BIN_PERMISSION_DENIED_ERROR 8003
 # define BIN_IS_DIR_ERROR 8004
 # define BIN_ERROR_CODE 8000
+# define BIN_NO_FILE_OR_DIR_ERROR 127
 
 # define EXIT_NOT_NUM_ARG_ERROR 9001
 # define EXIT_TOO_MANY_ARGS_ERROR 9002

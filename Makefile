@@ -1,7 +1,7 @@
 NAME = minishell
 
-CC = clang 
-CFLAGS =
+CC = gcc 
+CFLAGS = -g
 
 INCLUDES = ./includes
 
@@ -31,7 +31,7 @@ OBJS = $(SRCS:.c=.o)
 
 LIBFT_HEADER = ./libft/libft.h
 LIBFT = ./libft/libft.a
-LIBFT_FLAGS = -L=libft -lft
+LIBFT_FLAGS = -L libft -lft
 MAC_LIBFT_FLAGS = -L libft -lft
 
 EXTLIB_FLAGS = -ltermcap -lreadline

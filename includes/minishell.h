@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 13:30:12 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 18:31:10 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@
 # define SECT_TYPE_IN_DLM 100005
 # define SECT_TYPE_ARG 100006
 # define SECT_TYPE_CMD 100007
+
+#define SECT_CMD_TYPE_END 110001
+#define SECT_CMD_TYPE_PIPE 110002
+#define SECT_CMD_TYPE_RDRCT 110003
+
 
 # define PWD_TOO_MANY_ARGS_ERROR 3001
 

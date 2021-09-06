@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 16:06:28 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 19:54:30 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,36 @@ int	main(int argc, char **argv, char **env)
 		elem = parse(line);
 		if (!elem)
 			continue;
-		args = sect_form_args(elem);
-		exec_command(args);
-		// while(elem)
-		// {
-		// 	if (elem->type == SECT_TYPE_PIPE)
-		// 		pipex(elem);
-		// 	elem = elem->next;
-		// }
+		// args = sect_form_args(elem);
+		// exec_command(args);
+		while(elem)
+		{
+			// if (elem->type == SECT_TYPE_CMD)
+			// {
+				if (elem->type == SECT_TYPE_PIPE)
+					pipex(elem);
+			// }
+			elem = elem->next;
+		}
 	}
 }
+
+			// if (elem->type == SECT_TYPE_CMD)
+			// {
+			// 	if (elem->cmd_type == SECT_CMD_TYPE_PIPE)
+			// 	{
+			// 		int fd[2];
+			// 		pipe(fd);
+			// 		dup2(fd[1], g_mshell->fd->out);
+			// 		g_mshell->fd->out = fd[1];
+			// 		g_mshell->fd->in = fd[0];
+			// 		//fork exec;
+			// 		dup2(fd[0], 0);
+			// 	}
+			// 		pipex(elem);
+			// 	else
+			// 	{
+			// 		args = sect_form_args(elem);
+			// 		exec_command(args);
+			// 	}
+			// }

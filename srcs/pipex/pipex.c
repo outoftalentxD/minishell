@@ -17,9 +17,11 @@ void child1_process(int *fd, t_sect *elem)
 {
 	char **args;
 	dup2(fd[1], 1);
+	close(fd[1]);
 	close(fd[0]);
 	args = sect_form_args(search_prev_cmd(elem));
 	exec_command(args);
+	//execlp("/bin/ls", "/bin/ls", NULL);
 	exit(EXIT_FAILURE);
 }
 
@@ -29,6 +31,8 @@ void child2_process(int *fd, t_sect *elem)
 
 	dup2(fd[0], 0);
 	close(fd[1]);
+	close(fd[0]);
+	//execlp("usr/bin/wc", "usr/bin/wc", NULL);
 	args = sect_form_args(elem->next);
 	exec_command(args);
 	exit(EXIT_FAILURE);
@@ -51,6 +55,13 @@ void pipex(t_sect *elem)
 		child2_process(fd, elem);
 	close(fd[0]);
 	close(fd[1]);
-	waitpid(-1, &status, 0);
-	waitpid(-1, &status, 0);
+	waitpid(child1, &status, 0);
+	write(2, " 1st FINISHED BTW\n", 19);
+	waitpid(child2, &status, 0);
+	write(2, " 2nd FINISHED BTW\n", 19);
 }
+
+// void pipex(t_sect *elem)
+// {
+
+// }

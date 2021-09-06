@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:16:25 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 00:40:00 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 22:54:06 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,11 @@ static int	exec_builtin(char **args)
 int	exec_command(char **args)
 {
 	char	*command;
-	pid_t	pid;
-	int		status;
+	int		code;
 
-	status = 0;
 	if (is_builtin(args[0]))
-		exec_builtin(args);
+		code = exec_builtin(args);
 	else
-	{
-		pid = fork();
-		if (pid == -1)
-			perror("fork: ");
-		else if (pid == 0)
-			exit(exec_binary(args, g_mshell->envp));
-		else
-			waitpid(-1, &status, 0);
-	}
-	return (set_exit_status(WEXITSTATUS(status)));
+		code = exec_binary(args, g_mshell->envp);
+	return (code);
 }

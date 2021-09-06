@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 21:36:32 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 23:06:49 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,35 @@ int set_signal_handlers()
 	return (0);
 }
 
+static int close_prev_fd(t_sect *elem)
+{
+	elem = elem->prev;
+	while (elem)
+	{
+		if (elem->type == SECT_TYPE_CMD)
+		{
+			if (elem->fd->in != STDIN_FILENO)
+				close(elem->fd->in);
+			if (elem->fd->out != STDOUT_FILENO)
+				close(elem->fd->out);
+			return (EXIT_FAILURE);
+		}
+		elem = elem->prev;
+	}
+	return (1);
+}
+
+
 void child_process(t_sect *elem)
 {
 	char **args;
-	pid_t child;
-	int status;
 
-	status = 0;
-	child = fork();
-	if (child == 0)
-	{
-		// printf("cmd: %s\n fd %d\n", elem->content, elem->fd->out);
-		dup2(elem->fd->in, 0);
-		dup2(elem->fd->out, 1);
-	//execlp("usr/bin/wc", "usr/bin/wc", NULL);
-		args = sect_form_args(elem);
-		exec_command(args);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		waitpid(-1, &status, 0);
-		write(1, " 1st FINISHED BTW\n", 19);
-	}
+	dup2(elem->fd->in, 0);
+	dup2(elem->fd->out, 1);
+	close_prev_fd(elem);
+	args = sect_form_args(elem);
+	exec_command(args);
+	exit(EXIT_FAILURE);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -66,8 +72,6 @@ int	main(int argc, char **argv, char **env)
 		elem = parse(line);
 		if (!elem)
 			continue;
-		// print_sections(elem);
-		
 		temp = elem;
 		while (elem)
 		{
@@ -81,39 +85,24 @@ int	main(int argc, char **argv, char **env)
 		{
 			if (elem->type == SECT_TYPE_CMD)
 			{
-				child_process(elem);
+				child = fork();
+				if (child == 0)
+					child_process(elem);
+				// waitpid(child, &status, 0);
+				// close_pipeline(elem);
+				// close(elem->fd->in);
+				// close(elem->fd->out);
 			}
 			elem = elem->next;
 		}
-		
-		// while(elem)
-		// {
-		// 	// if (elem->type == SECT_TYPE_CMD)
-		// 	// {
-		// 		if (elem->type == SECT_TYPE_PIPE)
-		// 			pipex(elem);
-		// 	// }
-		// 	elem = elem->next;
-		// }
+		elem = temp;
+		while (elem)
+		{
+			if (elem->type == SECT_TYPE_CMD)
+				waitpid(-1, &status, 0);
+			elem = elem->next;
+		}
+		close_pipeline(temp);
+		print_sections(temp);
 	}
 }
-
-			// if (elem->type == SECT_TYPE_CMD)
-			// {
-			// 	if (elem->cmd_type == SECT_CMD_TYPE_PIPE)
-			// 	{
-			// 		int fd[2];
-			// 		pipe(fd);
-			// 		dup2(fd[1], g_mshell->fd->out);
-			// 		g_mshell->fd->out = fd[1];
-			// 		g_mshell->fd->in = fd[0];
-			// 		//fork exec;
-			// 		dup2(fd[0], 0);
-			// 	}
-			// 		pipex(elem);
-			// 	else
-			// 	{
-			// 		args = sect_form_args(elem);
-			// 		exec_command(args);
-			// 	}
-			// }

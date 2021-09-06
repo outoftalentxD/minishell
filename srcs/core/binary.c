@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 21:10:36 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 13:27:17 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	throw_error_binary(char *path, int code)
 {
 	char	*error;
+	int		ret;
 
 	if (code == BIN_NO_FILE_OR_DIR_ERROR)
 		error = ": No such file or directory: ";
@@ -22,13 +23,17 @@ static int	throw_error_binary(char *path, int code)
 		error = ": command not found";
 	if (code == BIN_IS_DIR_ERROR)
 		error = ": Is a directory";
+	if (code == BIN_COMMAND_NOT_FOUND || code == BIN_NO_FILE_OR_DIR_ERROR)
+		ret = 127;
+	else if (code == BIN_IS_DIR_ERROR)
+		ret = 126;
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(path, STDERR_FILENO);
 	ft_putendl_fd(error, STDERR_FILENO);
-	return (BIN_ERROR_CODE);
+	return (ret);
 }
 
-static int	is_right_path(char *path, int opt)
+static int	is_right_path(char *path)
 {
 	int		fd;
 	DIR		*dir;
@@ -36,25 +41,14 @@ static int	is_right_path(char *path, int opt)
 
 	fd = open(path, O_WRONLY);
 	dir = opendir(path);
-	code = 0;
-	if (fd == -1 || !dir)
-		code = BIN_ERROR_CODE;
-	if (opt == 'd')
-	{
-		if (fd == -1 && !dir)
-			throw_error_binary(path, BIN_NO_FILE_OR_DIR_ERROR);
-		else if (fd != -1 && !dir)
-			throw_error_binary(path, BIN_PERMISSION_DENIED_ERROR);
-		else if (fd == -1 && dir)
-			throw_error_binary(path, BIN_IS_DIR_ERROR);
-	}
-	else if (opt == 'c')
-	{
-		if (fd == -1)
-			throw_error_binary(path, BIN_COMMAND_NOT_FOUND);
-	}
+	code = EXIT_SUCCESS;
+	if (fd < 0 && dir)
+		code = throw_error_binary(path, BIN_IS_DIR_ERROR);
+	else if (fd >= 0 && !dir)
+		code = throw_error_binary(path, BIN_PERMISSION_DENIED_ERROR);
 	close(fd);
-	closedir(dir);
+	if (dir)
+		closedir(dir);
 	return (code);
 }
 
@@ -113,14 +107,18 @@ int exec_binary(char **args, char **envp)
 	char	*name;
 	char	**argv;
 	char	*command;
+	int		code;
 
 	name = args[0];
 	if (ft_strchr(args[0], '/'))
 	{
+		code = is_right_path(name);
+		if (code)
+			return (code);
 		if (execve(name, args, envp))
 		{
 			perror("minishell");
-			return (BIN_ERROR_CODE);
+			return (127);
 		}
 	}
 	else
@@ -130,5 +128,5 @@ int exec_binary(char **args, char **envp)
 			return (throw_error_binary(name, BIN_COMMAND_NOT_FOUND));
 		execve(path, args, envp);
 	}
-	return (CD_TOO_MANY_ARGS_ERROR);
+	return (EXIT_SUCCESS);
 }

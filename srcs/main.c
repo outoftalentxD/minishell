@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 19:54:30 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/06 20:44:46 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv, char **env)
 {
 	char	*line;
 	t_sect	*elem;
+	t_sect	*temp;
 	char	**args;
 
 	g_mshell = init_mshell(env);
@@ -38,17 +39,29 @@ int	main(int argc, char **argv, char **env)
 		elem = parse(line);
 		if (!elem)
 			continue;
-		// args = sect_form_args(elem);
-		// exec_command(args);
-		while(elem)
+		temp = elem;
+		while (elem)
 		{
-			// if (elem->type == SECT_TYPE_CMD)
-			// {
-				if (elem->type == SECT_TYPE_PIPE)
-					pipex(elem);
-			// }
+			if (elem->type == SECT_TYPE_CMD)
+				open_pipelines(elem);
 			elem = elem->next;
 		}
+		elem = temp;
+		while (elem)
+		{
+			
+			elem = elem->next;
+		}
+		
+		// while(elem)
+		// {
+		// 	// if (elem->type == SECT_TYPE_CMD)
+		// 	// {
+		// 		if (elem->type == SECT_TYPE_PIPE)
+		// 			pipex(elem);
+		// 	// }
+		// 	elem = elem->next;
+		// }
 	}
 }
 

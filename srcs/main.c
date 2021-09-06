@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 20:44:46 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 21:36:32 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,39 @@ int set_signal_handlers()
 	return (0);
 }
 
+void child_process(t_sect *elem)
+{
+	char **args;
+	pid_t child;
+	int status;
+
+	status = 0;
+	child = fork();
+	if (child == 0)
+	{
+		// printf("cmd: %s\n fd %d\n", elem->content, elem->fd->out);
+		dup2(elem->fd->in, 0);
+		dup2(elem->fd->out, 1);
+	//execlp("usr/bin/wc", "usr/bin/wc", NULL);
+		args = sect_form_args(elem);
+		exec_command(args);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		waitpid(-1, &status, 0);
+		write(1, " 1st FINISHED BTW\n", 19);
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char	*line;
 	t_sect	*elem;
 	t_sect	*temp;
 	char	**args;
+	int status;
+	pid_t child;
 
 	g_mshell = init_mshell(env);
 	while (1)
@@ -39,17 +66,23 @@ int	main(int argc, char **argv, char **env)
 		elem = parse(line);
 		if (!elem)
 			continue;
+		// print_sections(elem);
+		
 		temp = elem;
 		while (elem)
 		{
 			if (elem->type == SECT_TYPE_CMD)
-				open_pipelines(elem);
+				open_pipeline(elem);
 			elem = elem->next;
 		}
 		elem = temp;
+		status = 0;
 		while (elem)
 		{
-			
+			if (elem->type == SECT_TYPE_CMD)
+			{
+				child_process(elem);
+			}
 			elem = elem->next;
 		}
 		

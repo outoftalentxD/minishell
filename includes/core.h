@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 20:42:44 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 21:11:24 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		sig_handler(int signum);
 /* pipex */
 void		pipex(t_sect *elem);
 t_sect		*get_next_cmd(t_sect *elem);
-int			close_pipelines(t_sect *elem);
-int			open_pipelines(t_sect *elem);
+int			close_pipeline(t_sect *elem);
+int			open_pipeline(t_sect *elem);
 
 #endif

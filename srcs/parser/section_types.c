@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   section_types.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 20:18:31 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 18:36:55 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/06 21:31:33 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,8 @@ int	sect_set_type(t_sect *sect)
 		sect->type = SECT_TYPE_IN;
 	else if (!ft_strcmp(sect->content, "<<"))
 		sect->type = SECT_TYPE_IN_DLM;
-	else if (!sect->prev || sect_type_is_pipe(sect->prev))
-	{
+	else if (!sect->prev || sect->prev->type == SECT_TYPE_PIPE)
 		sect->type = SECT_TYPE_CMD;
-		set_cmd_type(sect);
-	}
 	else
 		sect->type = SECT_TYPE_ARG;
 	return (0);
@@ -82,10 +79,20 @@ int	sect_set_type(t_sect *sect)
 
 int	sect_set_type_to_all(t_sect *sect)
 {
+	t_sect	*temp;
+
+	temp = sect;
 	while (sect)
 	{
 		sect_set_type(sect);
 		sect = sect->next;
 	}
-	return (0);
+	sect = temp;
+	while (sect)
+	{
+		if (sect->type == SECT_TYPE_CMD)
+			set_cmd_type(sect);
+		sect = sect->next;
+	}
+	return (EXIT_SUCCESS);
 }

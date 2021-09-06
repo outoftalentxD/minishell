@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 19:49:02 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 21:20:05 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	print_sections(t_sect *sect)
 {
 	while (sect)
 	{
-		printf("content: /%s/\n", sect->content);
+		printf("content: /%s/ type: %d  %d \n", sect->content, sect->type, sect->cmd_type);
 		sect = sect->next;
 	}
 }

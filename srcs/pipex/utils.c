@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 20:39:45 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 20:42:02 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/06 21:36:24 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ t_sect	*get_next_cmd(t_sect *elem)
 	{
 		if (elem->type == SECT_TYPE_CMD)
 			return (elem);
+		elem = elem->next;
 	}
 	return (elem);
 }
 
-int	close_pipelines(t_sect *elem)
+int	close_pipeline(t_sect *elem)
 {
 	if (elem->fd->in != STDIN_FILENO)
 		close(elem->fd->in);
@@ -32,7 +33,7 @@ int	close_pipelines(t_sect *elem)
 	return (EXIT_SUCCESS);
 }
 
-int	open_pipelines(t_sect *elem)
+int	open_pipeline(t_sect *elem)
 {
 	int		fd[2];
 	t_sect	*cmd;

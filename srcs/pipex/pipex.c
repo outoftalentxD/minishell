@@ -58,7 +58,7 @@ void pipex(t_sect *elem)
 	waitpid(child1, &status, 0);
 	write(2, " 1st FINISHED BTW\n", 19);
 	waitpid(child2, &status, 0);
-	write(2, " 2nd FINISHED BTW\n", 19);
+	write(1 , " 2nd FINISHED BTW\n", 19);
 }
 
 // void pipex(t_sect *elem)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binary.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 18:09:54 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:13:44 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,6 @@ static int	is_right_path(char *path)
 	if (dir)
 		closedir(dir);
 	return (code);
-}
-
-static char	*bin_form_path(char *name, char *path)
-{
-	char	*temp;
-	char	*ret;
-
-	temp = ft_strjoin(path, "/");
-	ret = ft_strjoin(temp, name);
-	free(temp);
-	return (ret);
 }
 
 static int	bin_find_in_dir(char *name, char *path)

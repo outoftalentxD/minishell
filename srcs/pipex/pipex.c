@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/07 18:02:03 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:36:15 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,20 @@ void	child_process(t_sect *elem)
 	close_pipeline(elem);
 	args = sect_form_args(elem);
 	code = exec_command(args);
-	exit(code);
+}
+
+void	bi_child_process(t_sect *elem)
+{
+	char	**args;
+	int		code;
+
+	if (elem->cmd_type != SECT_CMD_TYPE_END)
+		dup2(elem->fd->out, 1);
+	if (elem->prev)
+		dup2(elem->fd->in, 0);
+	args = sect_form_args(elem);
+	code = exec_command(args);
+	set_exit_status(code);
 }
 
 void	pipex(t_sect *elem)
@@ -38,9 +51,16 @@ void	pipex(t_sect *elem)
 	{
 		if (elem->type == SECT_TYPE_CMD)
 		{
-			elem->pid = fork();
-			if (elem->pid == 0)
-				child_process(elem);
+			if (is_builtin(elem->content))
+			{
+				bi_child_process(elem);
+			}
+			else
+			{
+				elem->pid = fork();
+				if (elem->pid == 0)
+					child_process(elem);
+			}
 		}
 		elem = elem->next;
 	}
@@ -48,9 +68,10 @@ void	pipex(t_sect *elem)
 	close_pipeline(elem);
 	while (elem)
 	{
-		if (elem->type == SECT_TYPE_CMD)
+		if (elem->type == SECT_TYPE_CMD && (!is_builtin(elem->content)))
 		{
 			waitpid(elem->pid, &status, 0);
+			set_exit_status(WEXITSTATUS(status));
 		}
 		elem = elem->next;
 	}

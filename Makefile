@@ -34,13 +34,20 @@ LIBFT = ./libft/libft.a
 LIBFT_FLAGS = -L libft -lft
 MAC_LIBFT_FLAGS = -L libft -lft
 
+USR = $(shell whoami)
+
+LRD_INC =   -I/Users/$(USR)/.brew/opt/readline/include
+LLRD_INC =  -I/usr/local/Cellar/readline/8.1/include
+LRD_LIB =   -lreadline -L/Users/$(USR)/.brew/opt/readline/lib
+LLRD_LIB =  -lreadline -L/usr/local/Cellar/readline/8.1/lib
+
 EXTLIB_FLAGS = -ltermcap -lreadline
 
 
 $(NAME): 
 
 $(OBJS): %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -I $(INCLUDES) -o $@
+	$(CC) $(CFLAGS) -c $< -I $(INCLUDES) ${LRD_INC} -o $@
 
 $(LIBFT):
 	$(MAKE) -C ./libft
@@ -48,7 +55,7 @@ $(LIBFT):
 all: $(NAME)
 
 minishell: $(OBJS) $(LIBFT) $(HEADER) 
-	$(CC) $(OBJS) $(LIBFT_FLAGS) $(EXTLIB_FLAGS) -o $@
+	$(CC) $(OBJS) $(LIBFT_FLAGS) $(EXTLIB_FLAGS) $(LRD_LIB) -o $@
 
 clean:
 	$(RM) $(OBJS)

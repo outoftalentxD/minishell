@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 17:16:15 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:23:05 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ t_dict		*init_env(char **env);
 t_mshell	*init_mshell(char **env);
 t_sig		*init_signal(void);
 
-/* core funcs */
+/* exec command */
 int			exec_command(char **argv);
+int			exec_binary(char **args, char **envp);
+int			is_builtin(char *arg);
 
 /* builtins */
 int			bi_echo(char **args);
@@ -43,16 +45,16 @@ int			bi_cd(char **args, t_dict *env);
 int			bi_unset(char **args, t_dict **env);
 int			bi_exit(char **args);
 
-/* binary */
-int			exec_binary(char **args, char **envp);
 
 /* utils */
 int			get_args_size(char **args);
 int			ft_free_args(char **args);
 int			set_exit_status(int status);
+char		*bin_form_path(char *name, char *path);
 
 /* signal */
 void		sig_handler(int signum);
+int			set_signal_handlers(void);
 
 /* pipex */
 void		pipex(t_sect *elem);

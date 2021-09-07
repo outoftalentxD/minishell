@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   section_types.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 20:18:31 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 18:04:28 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/07 21:03:29 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ int	sect_set_type_to_all(t_sect *sect)
 	{
 		if (sect->type == SECT_TYPE_CMD)
 			set_cmd_type(sect);
+		else if (sect->type == SECT_TYPE_OUT)
+			sect->next->cmd_type = SECT_TYPE_OUT;
+		else if (sect->type == SECT_TYPE_OUT_AP)
+			sect->next->cmd_type = SECT_TYPE_OUT_AP;
 		sect = sect->next;
 	}
 	return (EXIT_SUCCESS);

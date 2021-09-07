@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:09:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 18:04:01 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/07 21:05:56 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_sect	*sect_init_elem(char *content)
 		return (0);
 	elem->content = content;
 	elem->type = 0;
+	elem->cmd_type = 0;
 	elem->next = 0;
 	elem->prev = 0;
 	elem->fd = ft_calloc(1, sizeof(t_fd));

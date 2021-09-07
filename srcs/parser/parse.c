@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 22:39:58 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:04:45 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,6 @@ int	preparse(char **strs)
 		*strs = str;
 	}
 	return (EXIT_SUCCESS);
-}
-
-void	print_sections(t_sect *sect)
-{
-	while (sect)
-	{
-		if (sect->type == SECT_TYPE_CMD)
-			printf("content: /%s/ fdin: %d  fdout: %d \n", sect->content, sect->fd->in, sect->fd->out);
-		sect = sect->next;
-	}
 }
 
 int	process_sections(t_sect *sect)

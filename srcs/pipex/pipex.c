@@ -1,67 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
+/*   Updated: 2021/09/07 18:02:03 by kbulwer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-t_sect *search_prev_cmd(t_sect *elem)
+void	child_process(t_sect *elem)
 {
-	t_sect *temp;
+	char	**args;
+	int		code;
 
-	temp = elem;
-	while(temp)
-	{
-		if (temp->prev->type == SECT_TYPE_CMD)
-			return (temp->prev);
-	}
-	return (NULL);
+	if (elem->cmd_type != SECT_CMD_TYPE_END)
+		dup2(elem->fd->out, 1);
+	if (elem->prev)
+		dup2(elem->fd->in, 0);
+	close_pipeline(elem);
+	args = sect_form_args(elem);
+	code = exec_command(args);
+	exit(code);
 }
 
-void child1_process(int *fd, t_sect *elem)
+void	pipex(t_sect *elem)
 {
-	char **args;
-	dup2(fd[1], 1);
-	close(fd[1]);
-	close(fd[0]);
-	args = sect_form_args(search_prev_cmd(elem));
-	exec_command(args);
-	//execlp("/bin/ls", "/bin/ls", NULL);
-	exit(EXIT_FAILURE);
-}
+	int		status;
+	t_sect	*temp;
 
-void child2_process(int *fd, t_sect *elem)
-{
-	char **args;
-
-	dup2(fd[0], 0);
-	close(fd[1]);
-	close(fd[0]);
-	//execlp("usr/bin/wc", "usr/bin/wc", NULL);
-	args = sect_form_args(elem->next);
-	exec_command(args);
-	exit(EXIT_FAILURE);
-}
-
-void pipex(t_sect *elem)
-{
-	int fd[2];
-	pid_t child1;
-	pid_t child2;
-	int status;
-
-	pipe(fd);
 	status = 0;
-	child1 = fork();
-	if (child1 == 0)
-		child1_process(fd, elem);
-	child2 = fork();
-	if (child2 == 0)
-		child2_process(fd, elem);
-	close(fd[0]);
-	close(fd[1]);
-	waitpid(child1, &status, 0);
-	write(2, " 1st FINISHED BTW\n", 19);
-	waitpid(child2, &status, 0);
-	write(1 , " 2nd FINISHED BTW\n", 19);
+	temp = elem;
+	while (elem)
+	{
+		if (elem->type == SECT_TYPE_CMD)
+		{
+			elem->pid = fork();
+			if (elem->pid == 0)
+				child_process(elem);
+		}
+		elem = elem->next;
+	}
+	elem = temp;
+	close_pipeline(elem);
+	while (elem)
+	{
+		if (elem->type == SECT_TYPE_CMD)
+		{
+			waitpid(elem->pid, &status, 0);
+		}
+		elem = elem->next;
+	}
 }
-
-// void pipex(t_sect *elem)
-// {
-
-// }

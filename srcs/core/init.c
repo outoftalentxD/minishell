@@ -6,11 +6,29 @@
 /*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:09:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 18:20:06 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:04:01 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_sect	*sect_init_elem(char *content)
+{
+	t_sect	*elem;
+
+	elem = ft_calloc(1, sizeof(t_sect));
+	if (!elem)
+		return (0);
+	elem->content = content;
+	elem->type = 0;
+	elem->next = 0;
+	elem->prev = 0;
+	elem->fd = ft_calloc(1, sizeof(t_fd));
+	elem->fd->in = 0;
+	elem->fd->out = 1;
+	elem->pid = 0;
+	return (elem);
+}
 
 t_dict	*init_env(char **env)
 {
@@ -37,7 +55,7 @@ t_dict	*init_env(char **env)
 	return (denv);
 }
 
-t_sig		*init_signal(void)
+t_sig	*init_signal(void)
 {
 	t_sig	*signal;
 
@@ -62,7 +80,7 @@ t_mshell	*init_mshell(char **env)
 	shell->signal = init_signal();
 	shell->exit_status = 0;
 	shell->fd = ft_calloc(1, sizeof(t_fd));
-	shell->fd->in = 0;
-	shell->fd->out = 1;
+	shell->fd->in = STDIN_FILENO;
+	shell->fd->out = STDOUT_FILENO;
 	return (shell);
 }

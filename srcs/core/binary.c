@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binary.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 13:31:16 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:09:54 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,17 @@ static int	bin_find_in_dir(char *name, char *path)
 	dir = opendir(path);
 	if (!dir)
 		return (0);
-	while ((elem = readdir(dir)))
+	elem = readdir(dir);
+	while (elem)
 	{
 		if (!ft_strcmp(elem->d_name, name))
+		{
+			closedir(dir);
 			return (1);
+		}
+		elem = readdir(dir);
 	}
+	closedir(dir);
 	return (0);
 }
 
@@ -101,21 +107,19 @@ static char	*bin_find_in_path(char *name, t_dict *env)
 	return (0);
 }
 
-int exec_binary(char **args, char **envp)
+int	exec_binary(char **args, char **envp)
 {
 	char	*path;
-	char	*name;
 	char	**argv;
 	char	*command;
 	int		code;
 
-	name = args[0];
 	if (ft_strchr(args[0], '/'))
 	{
-		code = is_right_path(name);
+		code = is_right_path(args[0]);
 		if (code)
 			return (code);
-		if (execve(name, args, envp))
+		if (execve(args[0], args, envp))
 		{
 			perror("minishell");
 			return (BIN_NO_FILE_OR_DIR_ERROR);
@@ -123,9 +127,9 @@ int exec_binary(char **args, char **envp)
 	}
 	else
 	{
-		path = bin_find_in_path(name, g_mshell->env);
+		path = bin_find_in_path(args[0], g_mshell->env);
 		if (!path)
-			return (throw_error_binary(name, BIN_COMMAND_NOT_FOUND));
+			return (throw_error_binary(args[0], BIN_COMMAND_NOT_FOUND));
 		execve(path, args, envp);
 	}
 	return (EXIT_SUCCESS);

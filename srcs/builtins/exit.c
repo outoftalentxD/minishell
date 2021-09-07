@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 21:37:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 18:44:53 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/07 17:08:35 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	throw_error_exit(char *arg, int code)
 		exit(2);
 	}
 	set_exit_status(127);
-	return (code);
+	return (127);
 }
 
 int	bi_exit(char **args)

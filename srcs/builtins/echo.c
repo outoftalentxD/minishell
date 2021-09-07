@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 15:07:46 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 18:38:04 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:10:05 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,4 @@ int	bi_echo(char **args)
 		ft_putstr_fd("\n", STDOUT_FILENO);
 	set_exit_status(0);
 	return (0);
-
 }

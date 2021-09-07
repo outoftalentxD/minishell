@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 21:11:24 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/07 17:16:15 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void		pipex(t_sect *elem);
 t_sect		*get_next_cmd(t_sect *elem);
 int			close_pipeline(t_sect *elem);
 int			open_pipeline(t_sect *elem);
+void		cmd_execution(t_sect *elem);
 
 #endif

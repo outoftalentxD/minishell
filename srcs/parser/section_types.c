@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   section_types.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 20:18:31 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 21:31:33 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/07 18:04:28 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	sect_is_specified(t_sect *elem)
 
 static int	set_cmd_type(t_sect *sect)
 {
-	t_sect *elem;
+	t_sect	*elem;
 
 	elem = sect;
 	while (elem)
@@ -45,9 +45,9 @@ static int	set_cmd_type(t_sect *sect)
 			return (EXIT_SUCCESS);
 		}
 		else if (elem->type == SECT_TYPE_IN
-				|| elem->type == SECT_TYPE_OUT
-				|| elem->type == SECT_TYPE_IN_DLM
-				|| elem->type == SECT_TYPE_OUT_AP)
+			|| elem->type == SECT_TYPE_OUT
+			|| elem->type == SECT_TYPE_IN_DLM
+			|| elem->type == SECT_TYPE_OUT_AP)
 		{
 			sect->cmd_type = SECT_CMD_TYPE_RDRCT;
 			return (EXIT_SUCCESS);

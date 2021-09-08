@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/07 18:36:15 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/08 19:42:17 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	child_process(t_sect *elem)
 	char	**args;
 	int		code;
 
-	if (elem->cmd_type != SECT_CMD_TYPE_END)
+	if (elem->cmd_type != SECT_CMD_TYPE_END || elem->fd->out != STDOUT_FILENO)
 		dup2(elem->fd->out, 1);
-	if (elem->prev)
+	if (elem->prev || elem->fd->in != STDIN_FILENO)
 		dup2(elem->fd->in, 0);
 	close_pipeline(elem);
 	args = sect_form_args(elem);
@@ -31,9 +31,9 @@ void	bi_child_process(t_sect *elem)
 	char	**args;
 	int		code;
 
-	if (elem->cmd_type != SECT_CMD_TYPE_END)
+	if (elem->cmd_type != SECT_CMD_TYPE_END || elem->fd->out != STDOUT_FILENO)
 		dup2(elem->fd->out, 1);
-	if (elem->prev)
+	if (elem->prev || elem->fd->in != STDIN_FILENO)
 		dup2(elem->fd->in, 0);
 	args = sect_form_args(elem);
 	code = exec_command(args);

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 20:18:31 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 21:03:29 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/08 17:17:58 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ int	sect_set_type_to_all(t_sect *sect)
 			sect->next->cmd_type = SECT_TYPE_OUT;
 		else if (sect->type == SECT_TYPE_OUT_AP)
 			sect->next->cmd_type = SECT_TYPE_OUT_AP;
+		else if (sect->type == SECT_TYPE_IN)
+			sect->next->cmd_type = SECT_TYPE_IN;
+		else if (sect->type == SECT_TYPE_IN_DLM)
+			sect->next->cmd_type = SECT_TYPE_IN_DLM;
 		sect = sect->next;
 	}
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 19:06:48 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/08 16:29:28 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@
 # include "parser.h"
 # include "core.h"
 
-# define SECT_TYPE_PIPE 100001
-# define SECT_TYPE_OUT 100002
-# define SECT_TYPE_OUT_AP 100003
-# define SECT_TYPE_IN 100004
-# define SECT_TYPE_IN_DLM 100005
-# define SECT_TYPE_ARG 100006
-# define SECT_TYPE_CMD 100007
+# define SECT_TYPE_PIPE 10001
+# define SECT_TYPE_OUT 10002
+# define SECT_TYPE_OUT_AP 10003
+# define SECT_TYPE_IN 10004
+# define SECT_TYPE_IN_DLM 10005
+# define SECT_TYPE_ARG 10006
+# define SECT_TYPE_CMD 10007
 
-#define SECT_CMD_TYPE_END 110001
-#define SECT_CMD_TYPE_PIPE 110002
-#define SECT_CMD_TYPE_RDRCT 110003
+#define SECT_CMD_TYPE_END 10011
+#define SECT_CMD_TYPE_PIPE 10012
+#define SECT_CMD_TYPE_RDRCT 10013
 
 
 # define PWD_TOO_MANY_ARGS_ERROR 3001

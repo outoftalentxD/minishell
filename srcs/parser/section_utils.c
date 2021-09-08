@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:21:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 21:07:06 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/08 16:36:02 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ int	get_section_len(char *str, int start, char *set)
 	return (min);
 }
 
+static int	sect_is_bin_arg(t_sect *elem)
+{
+	if (elem->type == SECT_TYPE_CMD)
+		return (1);
+	else if (elem->type == SECT_TYPE_ARG && elem->cmd_type == 0)
+		return (1);
+	else
+		return (0);
+}
+
 char	**sect_form_args(t_sect *sect)
 {
 	char	**args;
@@ -65,7 +75,7 @@ char	**sect_form_args(t_sect *sect)
 	size = 0;
 	while (elem && !sect_type_is_pipe(elem))
 	{
-		if (elem->type == SECT_TYPE_ARG || elem->type == SECT_TYPE_CMD)
+		if (sect_is_bin_arg(elem))
 			size++;
 		elem = elem->next;
 	}
@@ -74,7 +84,7 @@ char	**sect_form_args(t_sect *sect)
 	args[size] = 0;
 	while (i < size && sect)
 	{
-		if (sect->type == SECT_TYPE_ARG || sect->type == SECT_TYPE_CMD)
+		if (sect_is_bin_arg(sect))
 			args[i++] = sect->content;
 		sect = sect->next;
 	}

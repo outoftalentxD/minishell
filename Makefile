@@ -1,7 +1,7 @@
 NAME = minishell
 
 CC = gcc 
-CFLAGS = -g
+CFLAGS = 
 
 INCLUDES = ./includes
 
@@ -47,7 +47,7 @@ EXTLIB_FLAGS = -ltermcap -lreadline
 $(NAME): 
 
 $(OBJS): %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -I $(INCLUDES) ${LRD_INC} -o $@
+	$(CC) $(CFLAGS) -c $< -I $(INCLUDES) -o $@
 
 $(LIBFT):
 	$(MAKE) -C ./libft
@@ -55,7 +55,7 @@ $(LIBFT):
 all: $(NAME)
 
 minishell: $(OBJS) $(LIBFT) $(HEADER) 
-	$(CC) $(OBJS) $(LIBFT_FLAGS) $(EXTLIB_FLAGS) $(LRD_LIB) -o $@
+	$(CC) $(OBJS) $(LIBFT_FLAGS) $(EXTLIB_FLAGS) -o $@
 
 clean:
 	$(RM) $(OBJS)

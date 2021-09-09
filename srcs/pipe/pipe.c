@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/09 17:19:29 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/09 17:26:00 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,4 @@ void	pipex(t_sect *elem)
 	else
 		process_command(elem);
 	close_pipeline(elem);
-
 }

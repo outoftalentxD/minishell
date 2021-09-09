@@ -19,13 +19,13 @@ MAIN = main
 PARSER = parse quotes utils_1 utils_2 section section_utils section_types
 CORE = init dict_utils dict_utils_2 exec_command binary signal utils
 BUILTINS = echo pwd env export cd unset exit
-PIPEX = pipex utils
+PIPE = pipe utils
 
 SRCS =	$(addsuffix .c, $(addprefix srcs/, $(MAIN))) \
 		$(addsuffix .c, $(addprefix srcs/parser/, $(PARSER))) \
 		$(addsuffix .c, $(addprefix srcs/core/, $(CORE))) \
 		$(addsuffix .c, $(addprefix srcs/builtins/, $(BUILTINS))) \
-		$(addsuffix .c, $(addprefix srcs/pipex/, $(PIPEX))) \
+		$(addsuffix .c, $(addprefix srcs/pipe/, $(PIPE))) \
 
 OBJS = $(SRCS:.c=.o)
 

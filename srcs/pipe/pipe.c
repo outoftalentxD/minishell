@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/09 17:26:00 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/09 17:41:17 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,6 @@ void	process_builtin(t_sect *elem)
 	dup2(std_fd[1], STDOUT_FILENO);
 }
 
-int		get_cmd_count(t_sect *elem)
-{
-	int	size;
-
-	size = 0;
-	while (elem)
-	{
-		if (elem->type == SECT_TYPE_CMD)
-			size += 1;
-		elem = elem->next;
-	}
-	return (size);
-}
-
 void	process_command(t_sect *elem)
 {
 	int		status;
@@ -69,26 +55,25 @@ void	process_command(t_sect *elem)
 	status = 0;
 	temp = elem;
 	while (elem)
+	{
+		if (elem->type == SECT_TYPE_CMD)
 		{
-			if (elem->type == SECT_TYPE_CMD)
-			{
-				elem->pid = fork();
-				if (elem->pid == 0)
-					child_process(elem);
-			}
-			elem = elem->next;
-		}
-		elem = temp;
-		close_pipeline(elem);
-		while (elem)
+			elem->pid = fork();
+			if (elem->pid == 0)
+				child_process(elem);
+		}	
+		elem = elem->next;
+	}
+	elem = temp;
+	while (elem)
+	{
+		if (elem->type == SECT_TYPE_CMD && (!is_builtin(elem->content)))
 		{
-			if (elem->type == SECT_TYPE_CMD && (!is_builtin(elem->content)))
-			{
-				waitpid(elem->pid, &status, 0);
-				set_exit_status(WEXITSTATUS(status));
-			}
-			elem = elem->next;
+			waitpid(elem->pid, &status, 0);
+			set_exit_status(WEXITSTATUS(status));
 		}
+		elem = elem->next;
+	}
 }
 
 void	pipex(t_sect *elem)

@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 20:39:45 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 18:02:46 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/09 17:39:37 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		get_cmd_count(t_sect *elem)
+{
+	int	size;
+
+	size = 0;
+	while (elem)
+	{
+		if (elem->type == SECT_TYPE_CMD)
+			size += 1;
+		elem = elem->next;
+	}
+	return (size);
+}
 
 t_sect	*get_next_cmd(t_sect *elem)
 {

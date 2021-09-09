@@ -19,7 +19,7 @@ MAIN = main
 PARSER = parse quotes utils_1 utils_2 section section_utils section_types
 CORE = init dict_utils dict_utils_2 exec_command binary signal utils
 BUILTINS = echo pwd env export cd unset exit
-PIPE = pipe utils redirect
+PIPE = pipe utils redirect redirect_utils
 
 SRCS =	$(addsuffix .c, $(addprefix srcs/, $(MAIN))) \
 		$(addsuffix .c, $(addprefix srcs/parser/, $(PARSER))) \

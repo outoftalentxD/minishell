@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/08 16:29:28 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/09 20:29:21 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@
 # define SECT_TYPE_ARG 10006
 # define SECT_TYPE_CMD 10007
 
-#define SECT_CMD_TYPE_END 10011
-#define SECT_CMD_TYPE_PIPE 10012
-#define SECT_CMD_TYPE_RDRCT 10013
-
+# define SECT_CMD_TYPE_END 10011
+# define SECT_CMD_TYPE_PIPE 10012
+# define SECT_CMD_TYPE_RDRCT 10013
 
 # define PWD_TOO_MANY_ARGS_ERROR 3001
 

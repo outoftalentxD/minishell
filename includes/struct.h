@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 17:27:36 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/09 20:30:37 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "minishell.h"
 
-typedef struct	s_fd
+typedef struct s_fd
 {
-	int in;
-	int out;
-}				t_fd;
+	int	in;
+	int	out;
+}	t_fd;
 
 typedef struct s_dict
 {
@@ -38,7 +38,6 @@ typedef struct s_mshell
 	char				*oldpwd;
 	char				**envp;
 	int					exit_status;
-	
 }	t_mshell;
 
 typedef struct s_section

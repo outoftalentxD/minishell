@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/09 17:41:17 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/09 20:23:32 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,8 @@ void	process_builtin(t_sect *elem)
 	dup2(std_fd[1], STDOUT_FILENO);
 }
 
-void	process_command(t_sect *elem)
+void	fork_all_processes(t_sect *elem)
 {
-	int		status;
-	t_sect	*temp;
-
-	status = 0;
-	temp = elem;
 	while (elem)
 	{
 		if (elem->type == SECT_TYPE_CMD)
@@ -64,7 +59,15 @@ void	process_command(t_sect *elem)
 		}	
 		elem = elem->next;
 	}
-	elem = temp;
+}
+
+void	process_command(t_sect *elem)
+{
+	int		status;
+
+	status = 0;
+	fork_all_processes(elem);
+	close_pipeline(elem);
 	while (elem)
 	{
 		if (elem->type == SECT_TYPE_CMD && (!is_builtin(elem->content)))
@@ -79,8 +82,10 @@ void	process_command(t_sect *elem)
 void	pipex(t_sect *elem)
 {
 	if (get_cmd_count(elem) == 1 && is_builtin(elem->content))
+	{
 		process_builtin(elem);
+		close_pipeline(elem);
+	}
 	else
 		process_command(elem);
-	close_pipeline(elem);
 }

@@ -6,13 +6,13 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 20:39:45 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/09 17:39:37 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/09 17:45:53 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		get_cmd_count(t_sect *elem)
+int	get_cmd_count(t_sect *elem)
 {
 	int	size;
 

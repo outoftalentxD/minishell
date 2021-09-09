@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/09 20:29:04 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 01:13:25 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int			get_args_size(char **args);
 int			ft_free_args(char **args);
 int			set_exit_status(int status);
 char		*bin_form_path(char *name, char *path);
+int			inc_shlvl(char **envp);
 
 /* signal */
 void		sig_handler(int signum);

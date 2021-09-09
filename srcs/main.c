@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/09 20:28:10 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 01:13:09 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ int	main(int argc, char **argv, char **env)
 		elem = parse(line);
 		if (!elem)
 			continue ;
-		// print_sections(elem);
-		// args = sect_form_args(elem);
-		// while (*args)
-		// 	printf("arg: %s\n", *args++);			
-		
 		cmd_execution(elem);
 		unlink(".heredoc");
 	}

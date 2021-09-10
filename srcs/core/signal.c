@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 01:37:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 16:14:34 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 16:57:31 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	sig_heredoc_handler(int signum)
 	if (signum == SIGINT)
 	{
 		ft_putendl_fd("", STDERR_FILENO);
+		unlink(".heredoc");
 		exit(0);
 	}
 }

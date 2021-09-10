@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:19:01 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 16:14:49 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 16:45:57 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	write_in_heredoc(char *dlm)
 	char	*line;
 	int		fd;
 
-	fd = open(".heredoc", O_RDWR | O_CREAT | O_TRUNC);
+	fd = open(".heredoc", O_RDWR | O_CREAT | O_TRUNC, S_IRUSR);
 	if (fd < 1)
 		return (EXIT_FAILURE);
 	line = readline("> ");

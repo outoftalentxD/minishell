@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 17:38:58 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 16:17:02 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 17:00:27 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,23 @@ static int	dup_in_rdrct_heredoc(t_sect *elem)
 	char	*line;
 	int		fd;
 	t_sect	*cmd;
-	pid_t	pid;
 
 	dlm = ft_strdup(elem->next->content);
-	sig_sigint_off();	
-	pid = fork();
-	if (!pid)
+	sig_sigint_off();
+	elem->pid = fork();
+	if (elem->pid == 0)
 	{
 		signal(SIGINT, sig_heredoc_handler);
 		write_in_heredoc(dlm);
 		exit(0);
 	}
-	else
-	{
-		waitpid(pid, 0, 0);
-		sig_sigint_on();
-		cmd = get_prev_cmd(elem);
-		fd = open(".heredoc", O_RDONLY);
-		if (cmd->fd->in != STDIN_FILENO)
-			close(cmd->fd->in);
-		cmd->fd->in = fd;
-	}
+	waitpid(elem->pid, 0, 0);
+	sig_sigint_on();
+	cmd = get_prev_cmd(elem);
+	fd = open(".heredoc", O_RDONLY | O_CREAT);
+	if (cmd->fd->in != STDIN_FILENO)
+		close(cmd->fd->in);
+	cmd->fd->in = fd;
 	free(dlm);
 	return (EXIT_SUCCESS);
 }

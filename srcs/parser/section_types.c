@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 20:18:31 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/08 17:17:58 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 22:06:30 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	set_cmd_type(t_sect *sect)
 	return (EXIT_SUCCESS);
 }
 
-int	sect_set_type(t_sect *sect)
+int	sect_define_type(t_sect *sect)
 {
 	if (!ft_strcmp(sect->content, "|"))
 		sect->type = SECT_TYPE_PIPE;
@@ -84,7 +84,7 @@ int	sect_set_type_to_all(t_sect *sect)
 	temp = sect;
 	while (sect)
 	{
-		sect_set_type(sect);
+		sect_define_type(sect);
 		sect = sect->next;
 	}
 	sect = temp;
@@ -93,13 +93,13 @@ int	sect_set_type_to_all(t_sect *sect)
 		if (sect->type == SECT_TYPE_CMD)
 			set_cmd_type(sect);
 		else if (sect->type == SECT_TYPE_OUT)
-			sect->next->cmd_type = SECT_TYPE_OUT;
+			sect_set_cmd_type(sect->next, SECT_TYPE_OUT);
 		else if (sect->type == SECT_TYPE_OUT_AP)
-			sect->next->cmd_type = SECT_TYPE_OUT_AP;
+			sect_set_cmd_type(sect->next, SECT_TYPE_OUT_AP);
 		else if (sect->type == SECT_TYPE_IN)
-			sect->next->cmd_type = SECT_TYPE_IN;
+			sect_set_cmd_type(sect->next, SECT_TYPE_IN);
 		else if (sect->type == SECT_TYPE_IN_DLM)
-			sect->next->cmd_type = SECT_TYPE_IN_DLM;
+			sect_set_cmd_type(sect->next, SECT_TYPE_IN_DLM);
 		sect = sect->next;
 	}
 	return (EXIT_SUCCESS);

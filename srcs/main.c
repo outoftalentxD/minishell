@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 17:10:15 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 22:06:39 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ int	main(int argc, char **argv, char **env)
 		set_signal_handlers();
 		line = readline("minishell$ ");
 		if (!line)
-		{
 			process_eof();
-		}
 		add_history(line);
 		elem = parse(line);
-		if (!elem)
+		if (input_is_valid(elem))
 			continue ;
 		cmd_execution(elem);
 		unlink(".heredoc");

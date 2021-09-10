@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 16:44:44 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 21:02:04 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@
 
 # define EXIT_NOT_NUM_ARG_ERROR 9001
 # define EXIT_TOO_MANY_ARGS_ERROR 9002
+
+# define INPUT_PARSE_NEAR_TOKEN_ERROR 1001
 
 extern t_mshell	*g_mshell;
 

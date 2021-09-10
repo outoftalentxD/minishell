@@ -6,11 +6,25 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 18:26:48 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 12:24:26 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 17:44:43 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	token_is_redirect(t_sect *elem)
+{
+	if (elem->type == SECT_TYPE_IN)
+		return (1);
+	else if (elem->type == SECT_TYPE_IN_DLM)
+		return (1);
+	else if (elem->type == SECT_TYPE_OUT)
+		return (1);
+	else if (elem->type == SECT_TYPE_OUT_AP)
+		return (1);
+	else
+		return (0);
+}
 
 int	process_eof(void)
 {

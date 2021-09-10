@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:21:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/08 16:36:02 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 20:13:49 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ int	get_section_len(char *str, int start, char *set)
 		{
 			sect_set_quotes_flag(str[i], &flag);
 			if (str[i] == *set && !flag)
+			{
+				if (i - start == 0 && str[i] == str[i + 1] && str[i] != '|')
+					return (2);
 				break ;
+			}
 			i++;
 		}
 		len = i - start;

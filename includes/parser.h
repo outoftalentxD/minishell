@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:38:37 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/09 20:29:56 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 22:09:18 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ int		sect_del_elem(t_sect **sect, t_sect *elem);
 int		sect_free_elem(t_sect *elem);
 int		get_section_len(char *str, int start, char *set);
 int		sect_set_type_to_all(t_sect *sect);
-int		sect_set_type(t_sect *sect);
+int		sect_define_type(t_sect *sect);
 int		sect_is_specified(t_sect *elem);
+int		sect_is_rdrct(t_sect *elem);
 int		sect_type_is_pipe(t_sect *elem);
 char	**sect_form_args(t_sect *sect);
+int		sect_set_type(t_sect *elem, int type);
+int		sect_set_cmd_type(t_sect *elem, int type);
 
 #endif

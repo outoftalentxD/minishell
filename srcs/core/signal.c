@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 01:37:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 16:57:31 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 22:39:54 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	sig_heredoc_handler(int signum)
 	{
 		ft_putendl_fd("", STDERR_FILENO);
 		unlink(".heredoc");
+		free_mshell();
 		exit(0);
 	}
 }

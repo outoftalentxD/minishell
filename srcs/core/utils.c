@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 18:26:48 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 17:44:43 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 22:40:02 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	token_is_redirect(t_sect *elem)
 int	process_eof(void)
 {
 	printf("exit\n");
+	free_mshell();
 	exit(0);
 }
 

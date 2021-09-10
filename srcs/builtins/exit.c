@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 21:37:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 18:32:56 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 22:38:33 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	bi_exit(char **args)
 	}
 	if (size > 2)
 		return (throw_error_exit(0, EXIT_TOO_MANY_ARGS_ERROR));
+	free_mshell();
 	exit(code);
 	return (EXIT_SUCCESS);
 }

@@ -17,7 +17,7 @@ HEADERS =	minitalk.h \
 
 MAIN = main
 PARSER = parse quotes utils_1 utils_2 section section_utils section_types
-CORE = init dict_utils dict_utils_2 exec_command binary signal utils shlvl validator
+CORE = init dict_utils dict_utils_2 exec_command binary signal utils shlvl validator clean
 BUILTINS = echo pwd env export cd unset exit
 PIPE = pipe utils redirect redirect_utils
 

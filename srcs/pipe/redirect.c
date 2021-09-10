@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 17:38:58 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 21:08:49 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 22:41:26 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static int	dup_in_rdrct_heredoc(t_sect *elem)
 	{
 		signal(SIGINT, sig_heredoc_handler);
 		write_in_heredoc(dlm);
+		free_mshell();
 		exit(0);
 	}
 	waitpid(elem->pid, 0, 0);

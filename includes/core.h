@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 01:13:25 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 12:28:59 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,14 @@ int			ft_free_args(char **args);
 int			set_exit_status(int status);
 char		*bin_form_path(char *name, char *path);
 int			inc_shlvl(char **envp);
+int			process_eof(void);
 
 /* signal */
 void		sig_handler(int signum);
 int			set_signal_handlers(void);
+int			sig_sigint_on(void);
+int			sig_sigint_off(void);
+void		sig_heredoc_handler(int signum);
 
 /* pipex */
 void		pipex(t_sect *elem);

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/10 00:59:30 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/10 12:26:19 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	child_process(t_sect *elem)
 	char	**args;
 	int		code;
 
+	sig_sigint_on();
 	if (elem->cmd_type != SECT_CMD_TYPE_END || elem->fd->out != STDOUT_FILENO)
 		dup2(elem->fd->out, STDOUT_FILENO);
 	if (elem->prev || elem->fd->in != STDIN_FILENO)
@@ -53,6 +54,7 @@ void	fork_all_processes(t_sect *elem)
 	{
 		if (elem->type == SECT_TYPE_CMD)
 		{
+			sig_sigint_off();
 			elem->pid = fork();
 			if (elem->pid == 0)
 				child_process(elem);
@@ -88,4 +90,5 @@ void	pipex(t_sect *elem)
 	}
 	else
 		process_command(elem);
+	sig_sigint_on();
 }

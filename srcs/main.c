@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 15:44:26 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 16:17:05 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ int	main(int argc, char **argv, char **env)
 		line = readline("minishell$ ");
 		if (!line)
 			process_eof();
+		if (quotes_is_valid(line)) // наверное нужно добавлять историю
+		{
+			add_history(line);
+			continue ;
+		}
 		elem = parse(line);
 		ft_add_history(elem, line);
 		postparse(&elem);

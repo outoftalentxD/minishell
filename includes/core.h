@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 14:25:41 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 16:10:17 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ int			bi_export(char **args, t_dict *env);
 int			bi_cd(char **args, t_dict *env);
 int			bi_unset(char **args, t_dict **env);
 int			bi_exit(char **args);
-
-/* validator */
-int			input_is_valid(t_sect *elem);
 
 /* utils */
 int			get_args_size(char **args);

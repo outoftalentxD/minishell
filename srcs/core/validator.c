@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:39:41 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 15:32:12 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 16:27:37 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,45 @@ int	sect_is_rdrct(t_sect *elem)
 		return (1);
 	else
 		return (0);
+}
+
+int	sect_set_quotes_flag(int c, int *flag)
+{
+	if (c == '"' && *flag == 0)
+		*flag = '"';
+	else if (c == '"' && *flag == '"')
+		*flag = 0;
+	else if (c == '\'' && *flag == 0)
+		*flag = '\'';
+	else if (c == '\'' && *flag == '\'')
+		*flag = 0;
+	return (EXIT_SUCCESS);
+}
+
+int	quotes_is_valid(char *line)
+{
+	int	i;
+	int	flag;
+
+	flag = 0;
+	i = 0;
+	while (line[i])
+	{
+		sect_set_quotes_flag(line[i], &flag);
+		i++;
+	}
+	if (!flag)
+		return (EXIT_SUCCESS);
+	else
+	{
+		if (flag == '\'')
+			ft_putendl_fd("minishell: bad sequence of single quotes",
+				STDERR_FILENO);
+		else if (flag == '\"')
+			ft_putendl_fd("minishell: bad sequence of double quotes",
+				STDERR_FILENO);
+		return (EXIT_FAILURE);
+	}
 }
 
 int	input_is_valid(t_sect *elem)

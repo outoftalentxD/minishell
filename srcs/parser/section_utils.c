@@ -6,24 +6,11 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:21:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 14:21:55 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 16:25:28 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	sect_set_quotes_flag(int c, int *flag)
-{
-	if (c == '"' && *flag == 0)
-		*flag = 'd';
-	else if (c == '"' && *flag == 'd')
-		*flag = 0;
-	else if (c == '\'' && *flag == 0)
-		*flag = 's';
-	else if (c == '\'' && *flag == 's')
-		*flag = 0;
-	return (0);
-}
 
 static int	len_to_char(char *str, int start, int set, int *flag)
 {
@@ -44,6 +31,28 @@ static int	len_to_char(char *str, int start, int set, int *flag)
 		i++;
 	}
 	return (len);
+}
+
+static int	sect_is_bin_arg(t_sect *elem)
+{
+	if (elem->type == SECT_TYPE_CMD)
+		return (1);
+	else if (elem->type == SECT_TYPE_ARG && elem->cmd_type == 0)
+		return (1);
+	else
+		return (0);
+}
+
+int	sect_is_specified(t_sect *elem)
+{
+	if (elem->type == SECT_TYPE_IN_DLM
+		|| elem->type == SECT_TYPE_OUT
+		|| elem->type == SECT_TYPE_OUT_AP
+		|| elem->type == SECT_TYPE_PIPE
+		|| elem->type == SECT_TYPE_IN)
+		return (1);
+	else
+		return (0);
 }
 
 int	get_section_len(char *str, int start, char *set)
@@ -68,16 +77,6 @@ int	get_section_len(char *str, int start, char *set)
 	if (min <= 1)
 		min = 1;
 	return (min);
-}
-
-static int	sect_is_bin_arg(t_sect *elem)
-{
-	if (elem->type == SECT_TYPE_CMD)
-		return (1);
-	else if (elem->type == SECT_TYPE_ARG && elem->cmd_type == 0)
-		return (1);
-	else
-		return (0);
 }
 
 char	**sect_form_args(t_sect *sect)

@@ -1,7 +1,7 @@
 NAME = minishell
 
 CC = gcc 
-CFLAGS = -Wextra -Wall -Werror
+CFLAGS = 
 
 INCLUDES = ./includes
 

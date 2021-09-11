@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:38:37 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 14:55:43 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 16:23:25 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int		preparse(char **str);
 t_sect	*parse(char *line);
 int		postparse(t_sect **sect);
 void	print_sections(t_sect *sect);
+
+/* validator */
+int		input_is_valid(t_sect *elem);
+int		quotes_is_valid(char *line);
+int		sect_set_quotes_flag(int c, int *flag);
 
 /*utils*/
 char	*str_replace(char *str, char *replace, char *to, int start);

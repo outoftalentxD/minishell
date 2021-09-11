@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 15:31:19 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 16:05:57 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,13 @@ int	process_sections(t_sect *sect)
 		if (sect->type == SECT_TYPE_ARG && sect->prev
 			&& sect->prev->type == SECT_TYPE_IN_DLM)
 		{
-			preparse_all_quotes(&sect->content);
+			if (preparse_all_quotes(&sect->content))
+				return (EXIT_FAILURE);
 			sect = sect->next;
 			continue ;
 		}
-		preparse(&sect->content);
+		if (preparse(&sect->content))
+			return (EXIT_FAILURE);
 		sect = sect->next;
 	}
 	return (EXIT_SUCCESS);

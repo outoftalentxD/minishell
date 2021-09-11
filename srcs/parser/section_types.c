@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 20:18:31 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 22:06:30 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:39:06 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,6 @@
 int	sect_type_is_pipe(t_sect *elem)
 {
 	if (elem->type == SECT_TYPE_PIPE)
-		return (1);
-	else
-		return (0);
-}
-
-int	sect_is_specified(t_sect *elem)
-{
-	if (elem->type == SECT_TYPE_IN_DLM
-		|| elem->type == SECT_TYPE_OUT
-		|| elem->type == SECT_TYPE_OUT_AP
-		|| elem->type == SECT_TYPE_PIPE
-		|| elem->type == SECT_TYPE_IN)
 		return (1);
 	else
 		return (0);
@@ -77,17 +65,8 @@ int	sect_define_type(t_sect *sect)
 	return (0);
 }
 
-int	sect_set_type_to_all(t_sect *sect)
+static int	sect_define_cmd_type(t_sect *sect)
 {
-	t_sect	*temp;
-
-	temp = sect;
-	while (sect)
-	{
-		sect_define_type(sect);
-		sect = sect->next;
-	}
-	sect = temp;
 	while (sect)
 	{
 		if (sect->type == SECT_TYPE_CMD)
@@ -101,6 +80,26 @@ int	sect_set_type_to_all(t_sect *sect)
 		else if (sect->type == SECT_TYPE_IN_DLM)
 			sect_set_cmd_type(sect->next, SECT_TYPE_IN_DLM);
 		sect = sect->next;
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	sect_set_type_to_all(t_sect *sect)
+{
+	t_sect	*temp;
+
+	temp = sect;
+	while (sect)
+	{
+		sect_define_type(sect);
+		sect = sect->next;
+	}
+	sect_define_cmd_type(temp);
+	while (temp)
+	{
+		if (ft_strrchr(temp->content, '\'') || ft_strrchr(temp->content, '"'))
+			temp->quote = 1;
+		temp = temp->next;
 	}
 	return (EXIT_SUCCESS);
 }

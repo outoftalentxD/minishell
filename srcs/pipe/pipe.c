@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/10 22:41:11 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:33:05 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	process_builtin(t_sect *elem)
 {
 	char	**args;
 	int		code;
-	int		fd;
 	int		std_fd[2];
 
 	std_fd[0] = dup(STDIN_FILENO);

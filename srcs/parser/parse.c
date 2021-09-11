@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 13:59:42 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:31:19 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	preparse(char **strs)
 {
 	int		i;
 	char	*str;
-	char	*temp;
 
 	str = *strs;
 	i = -1;
@@ -68,7 +67,6 @@ static int	preparse_all_quotes(char **strs)
 {
 	int		i;
 	char	*str;
-	char	*temp;
 
 	str = *strs;
 	i = -1;
@@ -106,7 +104,6 @@ int	process_sections(t_sect *sect)
 t_sect	*parse(char *line)
 {
 	t_sect	*sect;
-	char	*args;
 	int		i;
 	int		sect_len;
 

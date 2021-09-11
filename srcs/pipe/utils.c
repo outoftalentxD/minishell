@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 20:39:45 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 11:49:44 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:33:10 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ t_sect	*get_prev_cmd(t_sect *elem)
 
 int	close_pipeline(t_sect *elem)
 {
-	t_sect	*temp;
-
 	while (elem->prev)
 		elem = elem->prev;
 	while (elem)

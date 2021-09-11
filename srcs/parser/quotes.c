@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 12:14:36 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 19:23:28 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:31:25 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static char	*str_apply_env_dquotes(char *str, int *start, int *end)
 {
 	int		i;
-	int		diff;
 	char	*temp;
 
 	i = *start - 1;

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 18:26:48 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 13:42:00 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:43:02 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char	*bin_form_path(char *name, char *path)
 void	cmd_execution(t_sect *elem)
 {
 	t_sect	*head;
-	pid_t	child;
 
 	head = elem;
 	while (elem)

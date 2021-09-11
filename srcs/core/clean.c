@@ -34,9 +34,6 @@ void	free_env(t_dict *env)
 
 void	free_mshell(void)
 {
-	int	i;
-
-	i = 0;
 	free(g_mshell->oldpwd);
 	if (g_mshell->fd)
 		free(g_mshell->fd);

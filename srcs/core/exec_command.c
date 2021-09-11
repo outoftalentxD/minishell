@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 14:28:36 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 14:29:13 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:31:29 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static int	exec_builtin(char **args)
 
 int	exec_command(char **args)
 {
-	char	*command;
 	int		code;
 
 	if (is_builtin(args[0]))

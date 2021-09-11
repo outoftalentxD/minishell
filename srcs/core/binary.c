@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 18:13:44 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:31:46 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static int	bin_find_in_dir(char *name, char *path)
 {
 	struct dirent	*elem;
 	DIR				*dir;
-	int				i;
 
 	dir = opendir(path);
 	if (!dir)
@@ -79,7 +78,6 @@ static char	*bin_find_in_path(char *name, t_dict *env)
 {
 	char	*value;
 	char	**paths;
-	DIR		*dir;
 	int		i;
 
 	value = dict_get_value(env, "PATH");
@@ -99,8 +97,6 @@ static char	*bin_find_in_path(char *name, t_dict *env)
 int	exec_binary(char **args, char **envp)
 {
 	char	*path;
-	char	**argv;
-	char	*command;
 	int		code;
 
 	if (ft_strchr(args[0], '/'))

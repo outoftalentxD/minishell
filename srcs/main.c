@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 14:31:32 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:44:26 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ t_mshell	*g_mshell;
 void	print_sections(t_sect *elem)
 {
 	char	*content;
-	
+
 	while (elem)
 	{
 		if (!elem->content)
 			content = "NULL";
 		else
 			content = elem->content;
-		printf("content: |%s| type %d cmdtype %d\n", content, elem->type, elem->cmd_type);
+		printf("content: |%s| type %d cmdtype %d\n",
+			content, elem->type, elem->cmd_type);
 		elem = elem->next;
 	}
 }
@@ -32,12 +33,11 @@ void	print_sections(t_sect *elem)
 int	postparse(t_sect **sect)
 {
 	t_sect	*elem;
-	t_sect	*temp;
 
 	elem = *sect;
 	while (elem)
 	{
-		if (!elem->content[0])
+		if (!elem->content[0] && !elem->quote)
 		{
 			free(elem->content);
 			elem->content = NULL;
@@ -51,16 +51,31 @@ int	postparse(t_sect **sect)
 				sect_set_type(elem, SECT_TYPE_NULL);
 		}
 		elem = elem->next;
-
 	}
+	return (EXIT_SUCCESS);
+}
+
+static int	ft_add_history(t_sect *elem, char *line)
+{
+	if (!elem)
+		return (EXIT_FAILURE);
+	while (elem)
+	{
+		if (elem->type == SECT_TYPE_IN_DLM)
+			return (EXIT_FAILURE);
+		elem = elem->next;
+	}
+	add_history(line);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	char	*line;
 	t_sect	*elem;
-	char	**args;
 
+	(void)argc;
+	(void)argv;
 	g_mshell = init_mshell(env);
 	while (1)
 	{
@@ -68,13 +83,12 @@ int	main(int argc, char **argv, char **env)
 		line = readline("minishell$ ");
 		if (!line)
 			process_eof();
-		add_history(line);
 		elem = parse(line);
+		ft_add_history(elem, line);
 		postparse(&elem);
 		// g_mshell->sect = elem;
 		if (input_is_valid(elem))
 			continue ;
-		// print_sections(elem);
 		cmd_execution(elem);
 		unlink(".heredoc");
 		// free_sect(elem);

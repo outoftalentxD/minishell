@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:19:01 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 13:36:12 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:33:17 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	write_in_heredoc(char *dlm)
 int	dup_in_rdrct_heredoc(t_sect *elem)
 {
 	char	*dlm;
-	char	*line;
 	int		fd;
 	t_sect	*cmd;
 

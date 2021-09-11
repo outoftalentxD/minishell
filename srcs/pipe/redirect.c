@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 17:38:58 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 13:35:38 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:37:55 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int	throw_error_rdrct(char *token, int code)
 {
-	char	*error;
-
 	if (code == RDRCT_FILE_ERROR)
 	{
 		if (!token)

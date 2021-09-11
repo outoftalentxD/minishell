@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   section.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:20:19 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 17:28:28 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:26:48 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	sect_is_specified(t_sect *elem)
+{
+	if (elem->type == SECT_TYPE_IN_DLM
+		|| elem->type == SECT_TYPE_OUT
+		|| elem->type == SECT_TYPE_OUT_AP
+		|| elem->type == SECT_TYPE_PIPE
+		|| elem->type == SECT_TYPE_IN)
+		return (1);
+	else
+		return (0);
+}
 
 int	sect_add_elem(t_sect **sect, t_sect *elem)
 {

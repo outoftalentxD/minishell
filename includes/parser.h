@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:38:37 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 13:45:46 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 14:55:43 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 /*parser*/
 int		preparse(char **str);
 t_sect	*parse(char *line);
+int		postparse(t_sect **sect);
 void	print_sections(t_sect *sect);
 
 /*utils*/

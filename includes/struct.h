@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/09 20:30:37 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 15:16:46 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_section
 	pid_t				pid;
 	int					type;
 	int					cmd_type;
+	int					quote;
 }	t_sect;
 
 typedef struct s_signal

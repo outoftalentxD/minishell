@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 14:09:51 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 14:31:32 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int	main(int argc, char **argv, char **env)
 		// g_mshell->sect = elem;
 		if (input_is_valid(elem))
 			continue ;
-		print_sections(elem);
-		// cmd_execution(elem);
+		// print_sections(elem);
+		cmd_execution(elem);
 		unlink(".heredoc");
 		// free_sect(elem);
 	}

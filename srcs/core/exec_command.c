@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:16:25 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/07 18:33:11 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:46:02 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_builtin(char *arg)
 {
+	if (!arg)
+		return (0);
 	if (!ft_strcmp(arg, "echo"))
 		return (1);
 	else if (!ft_strcmp(arg, "pwd"))

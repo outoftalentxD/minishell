@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 22:26:28 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/11 14:25:41 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ t_sect		*get_prev_cmd(t_sect *elem);
 int			get_cmd_count(t_sect *elem);
 
 /* redirect */
-int			process_out_rdrct(t_sect *elem);
-int			process_in_rdrct(t_sect *elem);
+int			process_rdrct(t_sect *elem);
 int			write_in_heredoc(char *dlm);
+int			dup_in_rdrct_heredoc(t_sect *elem);
 
 /* clean */
-void		free_mshell();
+void		free_mshell(void);
 void		free_sect(t_sect *elem);
 
 #endif

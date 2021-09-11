@@ -3,26 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 17:38:58 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 22:41:26 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/11 13:35:38 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	throw_error_rdrct(char *token, int code)
+{
+	char	*error;
+
+	if (code == RDRCT_FILE_ERROR)
+	{
+		if (!token)
+			ft_putendl_fd("minishell: no such file or directory:",
+				STDERR_FILENO);
+		else
+		{
+			ft_putstr_fd("minishell: no such file or directory: ",
+				STDERR_FILENO);
+			ft_putendl_fd(token, STDERR_FILENO);
+		}
+	}
+	return (EXIT_FAILURE);
+}
 
 static int	dup_out_rdrct(t_sect *elem, int opt)
 {
 	int		fd;
 	t_sect	*cmd;
 
-	if (opt == O_TRUNC)
-		fd = open(elem->next->content, O_CREAT | O_WRONLY | O_TRUNC);
-	else if (opt == O_APPEND)
-		fd = open(elem->next->content, O_CREAT | O_WRONLY | O_APPEND);
+	if (opt == SECT_TYPE_OUT)
+		fd = open(elem->next->content, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	else if (opt == SECT_TYPE_OUT_AP)
+		fd = open(elem->next->content, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU);
 	if (fd < 1)
-		return (EXIT_FAILURE);
+		return (throw_error_rdrct(elem->next->content, RDRCT_FILE_ERROR));
 	cmd = get_prev_cmd(elem);
 	if (!cmd)
 	{
@@ -35,36 +54,6 @@ static int	dup_out_rdrct(t_sect *elem, int opt)
 	return (EXIT_SUCCESS);
 }
 
-static int	dup_in_rdrct_heredoc(t_sect *elem)
-{
-	char	*dlm;
-	char	*line;
-	int		fd;
-	t_sect	*cmd;
-
-	dlm = ft_strdup(elem->next->content);
-	sig_sigint_off();
-	elem->pid = fork();
-	if (elem->pid == 0)
-	{
-		signal(SIGINT, sig_heredoc_handler);
-		write_in_heredoc(dlm);
-		free_mshell();
-		exit(0);
-	}
-	waitpid(elem->pid, 0, 0);
-	sig_sigint_on();
-	free(dlm);
-	cmd = get_prev_cmd(elem);
-	if (!cmd)
-		return (EXIT_FAILURE);
-	fd = open(".heredoc", O_RDONLY | O_CREAT);
-	if (cmd->fd->in != STDIN_FILENO)
-		close(cmd->fd->in);
-	cmd->fd->in = fd;
-	return (EXIT_SUCCESS);
-}
-
 static int	dup_in_rdrct(t_sect *elem, int opt)
 {
 	int		fd;
@@ -72,9 +61,9 @@ static int	dup_in_rdrct(t_sect *elem, int opt)
 
 	if (opt == SECT_TYPE_IN)
 	{
-		fd = open(elem->next->content, O_RDONLY);
+		fd = open(elem->next->content, O_RDONLY, S_IRWXU);
 		if (fd < 1)
-			return (EXIT_FAILURE);
+			return (throw_error_rdrct(elem->next->content, RDRCT_FILE_ERROR));
 		cmd = get_prev_cmd(elem);
 		if (!cmd)
 		{
@@ -90,31 +79,25 @@ static int	dup_in_rdrct(t_sect *elem, int opt)
 	return (EXIT_SUCCESS);
 }
 
-int	process_out_rdrct(t_sect *elem)
+int	process_rdrct(t_sect *elem)
 {
-	while (elem)
-	{
-		if (!elem->next)
-			return (EXIT_FAILURE);
-		if (elem->type == SECT_TYPE_OUT)
-			dup_out_rdrct(elem, O_TRUNC);
-		else if (elem->type == SECT_TYPE_OUT_AP)
-			dup_out_rdrct(elem, O_APPEND);
-		elem = elem->next;
-	}
-	return (EXIT_SUCCESS);
-}
+	int	code;
 
-int	process_in_rdrct(t_sect *elem)
-{
+	code = 0;
 	while (elem)
 	{
 		if (!elem->next)
-			return (EXIT_FAILURE);
+			return (EXIT_SUCCESS);
 		if (elem->type == SECT_TYPE_IN)
-			dup_in_rdrct(elem, SECT_TYPE_IN);
+			code = dup_in_rdrct(elem, SECT_TYPE_IN);
 		else if (elem->type == SECT_TYPE_IN_DLM)
-			dup_in_rdrct(elem, SECT_TYPE_IN_DLM);
+			code = dup_in_rdrct(elem, SECT_TYPE_IN_DLM);
+		else if (elem->type == SECT_TYPE_OUT)
+			code = dup_out_rdrct(elem, SECT_TYPE_OUT);
+		else if (elem->type == SECT_TYPE_OUT_AP)
+			code = dup_out_rdrct(elem, SECT_TYPE_OUT_AP);
+		if (code)
+			return (EXIT_FAILURE);
 		elem = elem->next;
 	}
 	return (EXIT_SUCCESS);

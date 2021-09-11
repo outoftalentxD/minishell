@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 22:06:03 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 13:59:42 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,40 +41,64 @@ int	preparse(char **strs)
 	return (EXIT_SUCCESS);
 }
 
-int	process_sections(t_sect *sect)
+static int	preparse_quotes(char *str, int *i)
 {
-	while (sect)
+	int	j;
+	int	c;
+
+	j = *i;
+	c = str[j];
+	printf("c = %c\n", c);
+	ft_squeeze(str, j);
+	while (str[j])
 	{
-		preparse(&sect->content);
-		sect = sect->next;
+		if (str[j] == c)
+		{
+			ft_squeeze(str, j);
+			*i = j - 1;
+			return (EXIT_SUCCESS);
+		}
+		j++;
+	}
+	ft_putstr_fd("Bad sequence of single quotes\n", STDERR_FILENO);
+	return (EXIT_FAILURE);
+}
+
+static int	preparse_all_quotes(char **strs)
+{
+	int		i;
+	char	*str;
+	char	*temp;
+
+	str = *strs;
+	i = -1;
+	if (!str)
+		return (EXIT_FAILURE);
+	while (str[++i])
+	{
+		if (str[i] == '\'' || str[i] == '"')
+		{
+			if (preparse_quotes(str, &i))
+				return (EXIT_FAILURE);
+		}
+		*strs = str;
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	sect_merge(t_sect **sect)
+int	process_sections(t_sect *sect)
 {
-	t_sect	*elem;
-
-	elem = *sect;
-	while (elem->next)
+	while (sect)
 	{
-		if (!ft_strcmp(elem->content, ">"))
+		if (sect->type == SECT_TYPE_ARG && sect->prev
+			&& sect->prev->type == SECT_TYPE_IN_DLM)
 		{
-			if (!ft_strcmp(elem->next->content, ">"))
-			{
-				sect_del_elem(sect, elem->next);
-				str_change(&elem->content, ft_strdup(">>"));
-			}
+			preparse_all_quotes(&sect->content);
+			sect = sect->next;
+			continue ;
 		}
-		else if (!ft_strcmp(elem->content, "<"))
-		{
-			if (!ft_strcmp(elem->next->content, "<"))
-			{
-				sect_del_elem(sect, elem->next);
-				str_change(&elem->content, ft_strdup("<<"));
-			}
-		}
-		elem = elem->next;
+		preparse(&sect->content);
+		sect = sect->next;
 	}
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 18:56:16 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 21:02:04 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 13:40:51 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include "parser.h"
 # include "core.h"
 
+# define SECT_TYPE_NULL 10000
 # define SECT_TYPE_PIPE 10001
 # define SECT_TYPE_OUT 10002
 # define SECT_TYPE_OUT_AP 10003
@@ -47,6 +48,11 @@
 # define SECT_CMD_TYPE_PIPE 10012
 # define SECT_CMD_TYPE_RDRCT 10013
 
+# define INPUT_TOKEN_ERROR 1001
+
+# define CD_TOO_MANY_ARGS_ERROR 2001
+# define CD_WORNG_PATH_ERROR 2002
+
 # define PWD_TOO_MANY_ARGS_ERROR 3001
 
 # define EXPORT_KEY_CONTENT_ERROR 4001
@@ -58,9 +64,6 @@
 
 # define ENV_TOO_MANY_ARGS_ERROR 6001
 
-# define CD_TOO_MANY_ARGS_ERROR 2001
-# define CD_WORNG_PATH_ERROR 2002
-
 # define BIN_COMMAND_NOT_FOUND 8001
 # define BIN_PERMISSION_DENIED_ERROR 8003
 # define BIN_IS_DIR_ERROR 8004
@@ -70,7 +73,7 @@
 # define EXIT_NOT_NUM_ARG_ERROR 9001
 # define EXIT_TOO_MANY_ARGS_ERROR 9002
 
-# define INPUT_PARSE_NEAR_TOKEN_ERROR 1001
+# define RDRCT_FILE_ERROR 12001
 
 extern t_mshell	*g_mshell;
 

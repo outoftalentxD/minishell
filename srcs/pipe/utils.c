@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 20:39:45 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 17:12:09 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:49:44 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,13 @@ int	open_pipeline(t_sect *elem)
 	cmd_next = get_next_cmd(elem);
 	cmd_prev = get_prev_cmd(elem);
 	pipe(fd);
-	cmd_prev->fd->out = fd[1];
-	cmd_next->fd->in = fd[0];
+	if (cmd_prev)
+		cmd_prev->fd->out = fd[1];
+	else
+		close(fd[1]);
+	if (cmd_next)
+		cmd_next->fd->in = fd[0];
+	else
+		close(fd[0]);
 	return (EXIT_SUCCESS);
 }

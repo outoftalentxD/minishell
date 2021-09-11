@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 18:26:48 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 22:40:02 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/11 13:42:00 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	cmd_execution(t_sect *elem)
 			open_pipeline(elem);
 		elem = elem->next;
 	}
-	process_out_rdrct(head);
-	process_in_rdrct(head);
+	if (process_rdrct(head))
+		return ;
 	pipex(head);
 }

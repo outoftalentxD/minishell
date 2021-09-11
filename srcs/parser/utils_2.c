@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 14:26:55 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 21:46:29 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 13:42:40 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	sect_set_type(t_sect *elem, int type)
 {
 	if (elem)
 	{
-		elem->type = type; 
+		elem->type = type;
 		return (EXIT_SUCCESS);
 	}
 	return (EXIT_FAILURE);

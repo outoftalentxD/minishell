@@ -1,9 +1,10 @@
 #include "minishell.h"
 
-void free_sect(t_sect *elem)
+void	free_sect(t_sect *elem)
 {
-	t_sect *temp;
-	while(elem)
+	t_sect	*temp;
+
+	while (elem)
 	{
 		temp = elem;
 		if (elem->content)
@@ -15,11 +16,11 @@ void free_sect(t_sect *elem)
 	}
 }
 
-void free_env(t_dict *env)
+void	free_env(t_dict *env)
 {
-	t_dict *temp;
+	t_dict	*temp;
 
-	while(env)
+	while (env)
 	{
 		temp = env;
 		if (env->key)
@@ -29,12 +30,11 @@ void free_env(t_dict *env)
 		env = env->next;
 		free(temp);
 	}
-
 }
 
-void free_mshell()
+void	free_mshell(void)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	free(g_mshell->oldpwd);

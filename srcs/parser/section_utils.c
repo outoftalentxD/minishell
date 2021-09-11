@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:21:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 20:13:49 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 14:21:55 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,27 @@ static int	sect_set_quotes_flag(int c, int *flag)
 	return (0);
 }
 
+static int	len_to_char(char *str, int start, int set, int *flag)
+{
+	int	i;
+	int	len;
+
+	len = ft_strlen(str);
+	i = start;
+	while (str[i])
+	{
+		sect_set_quotes_flag(str[i], flag);
+		if (str[i] == set && !*flag)
+		{
+			if (i - start == 0 && str[i] == str[i + 1] && str[i] != '|')
+				return (-1);
+			return (i);
+		}
+		i++;
+	}
+	return (len);
+}
+
 int	get_section_len(char *str, int start, char *set)
 {
 	int	i;
@@ -36,18 +57,9 @@ int	get_section_len(char *str, int start, char *set)
 	min = ft_strlen(str) + 1;
 	while (*set)
 	{
-		i = start;
-		while (str[i])
-		{
-			sect_set_quotes_flag(str[i], &flag);
-			if (str[i] == *set && !flag)
-			{
-				if (i - start == 0 && str[i] == str[i + 1] && str[i] != '|')
-					return (2);
-				break ;
-			}
-			i++;
-		}
+		i = len_to_char(str, start, *set, &flag);
+		if (i == -1)
+			return (2);
 		len = i - start;
 		if (len < min)
 			min = len;

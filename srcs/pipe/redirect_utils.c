@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:19:01 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 21:45:40 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/11 13:36:12 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,34 @@ int	write_in_heredoc(char *dlm)
 			STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
+}
+
+int	dup_in_rdrct_heredoc(t_sect *elem)
+{
+	char	*dlm;
+	char	*line;
+	int		fd;
+	t_sect	*cmd;
+
+	dlm = ft_strdup(elem->next->content);
+	sig_sigint_off();
+	elem->pid = fork();
+	if (elem->pid == 0)
+	{
+		signal(SIGINT, sig_heredoc_handler);
+		write_in_heredoc(dlm);
+		exit(0);
+	}
+	waitpid(elem->pid, 0, 0);
+	sig_sigint_on();
+	free(dlm);
+	cmd = get_prev_cmd(elem);
+	if (!cmd)
+		return (EXIT_FAILURE);
+	fd = open(".heredoc", O_RDONLY | O_CREAT);
+	if (cmd->fd->in != STDIN_FILENO)
+		close(cmd->fd->in);
+	cmd->fd->in = fd;
 	return (EXIT_SUCCESS);
 }

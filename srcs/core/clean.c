@@ -14,6 +14,7 @@ void	free_sect(t_sect *elem)
 		elem = elem->next;
 		free(temp);
 	}
+	return;
 }
 
 void	free_env(t_dict *env)
@@ -30,15 +31,15 @@ void	free_env(t_dict *env)
 		env = env->next;
 		free(temp);
 	}
+	return;
 }
 
 void	free_mshell(void)
 {
 	free(g_mshell->oldpwd);
-	if (g_mshell->fd)
-		free(g_mshell->fd);
 	if (g_mshell->signal)
 		free(g_mshell->signal);
 	free_env(g_mshell->env);
-	free_sect(g_mshell->sect);
+	//free_sect(g_mshell->sect);
+	return;
 }

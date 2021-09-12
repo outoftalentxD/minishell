@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/12 11:41:12 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 15:34:20 by kbulwer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,19 @@ int	main(int argc, char **argv, char **envp)
 		}
 		elem = parse(line);
 		ft_add_history(elem, line);
+		free(line);
 		postparse(&elem);
-		// g_mshell->sect = elem;
+		g_mshell->sect = elem;
 		if (input_is_valid(elem))
+		{
+			free_sect(elem);
 			continue ;
+		}
 		update_mshell_env();
 		cmd_execution(elem);
 		unlink(".heredoc");
-		// free_sect(elem);
+		free_sect(elem);
 	}
-	// free_mshell();
+	free_mshell();
 	return (EXIT_SUCCESS);
 }

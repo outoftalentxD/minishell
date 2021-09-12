@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 14:26:55 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 13:42:40 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:14:27 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	ft_free_args(char **args)
 	int	i;
 
 	i = -1;
+	if (!args)
+		return (EXIT_FAILURE);
 	while (args[++i])
 		free(args[i]);
 	free(args);

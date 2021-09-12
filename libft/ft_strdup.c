@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 11:17:37 by melaena           #+#    #+#             */
-/*   Updated: 2021/06/18 14:33:51 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 22:44:36 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ char	*ft_strdup(const char *s1)
 		return (0);
 	ptr[len - 1] = 0;
 	while (len--)
-		ptr[len - 1] = s1[len - 1];
+		ptr[len] = s1[len];
 	return (ptr);
 }

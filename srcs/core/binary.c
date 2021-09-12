@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 15:31:46 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:10:59 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ static char	*bin_find_in_path(char *name, t_dict *env)
 			return (bin_form_path(name, paths[i]));
 		i++;
 	}
+	ft_free_args(paths);
 	return (0);
 }
 

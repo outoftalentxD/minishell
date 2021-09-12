@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/12 15:34:20 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:16:56 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,9 @@ int	main(int argc, char **argv, char **envp)
 		set_signal_handlers();
 		line = readline("minishell$ ");
 		if (!line)
-			process_eof();
-		if (quotes_is_valid(line)) // наверное нужно добавлять историю
-		{
-			add_history(line);
+			process_eof(line);
+		if (quotes_is_valid(line))
 			continue ;
-		}
 		elem = parse(line);
 		ft_add_history(elem, line);
 		free(line);

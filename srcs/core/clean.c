@@ -40,6 +40,7 @@ void	free_mshell(void)
 	if (g_mshell->signal)
 		free(g_mshell->signal);
 	free_env(g_mshell->env);
-	//free_sect(g_mshell->sect);
+	ft_free_args(g_mshell->envp);
+	// free_sect(g_mshell->sect);
 	return;
 }

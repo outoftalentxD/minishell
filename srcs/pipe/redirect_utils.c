@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:19:01 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 15:33:17 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:21:35 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	write_in_heredoc(char *dlm)
 		while (line && ft_strcmp(line, dlm))
 		{
 			ft_putendl_fd(line, fd);
+			free(line);
 			line = readline("> ");
 		}
 	}

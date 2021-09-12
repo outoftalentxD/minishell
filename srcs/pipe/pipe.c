@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/11 15:33:05 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 22:39:55 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	process_builtin(t_sect *elem)
 		dup2(elem->fd->in, STDIN_FILENO);
 	args = sect_form_args(elem);
 	code = exec_command(args);
+	free(args);
 	set_exit_status(code);
 	dup2(std_fd[0], STDIN_FILENO);
 	dup2(std_fd[1], STDOUT_FILENO);

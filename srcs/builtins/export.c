@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:36:49 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/05 18:48:20 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:04:23 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	throw_error_export(char **content, int code)
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		ft_putstr_fd(content[1], STDERR_FILENO);
 		ft_putendl_fd(" not found", STDERR_FILENO);
+		free(content[1]);
+		free(content);
 		return (set_exit_status(130));
 	}
 	else
@@ -69,7 +71,11 @@ static char	**split_env_elem(char *arg)
 	if (i >= len - 1)
 		content[1] = 0;
 	else
+	{
+		if (i == 0)
+			len--;
 		content[1] = ft_substr(arg, i + 1, len - i);
+	}
 	if (i < 1)
 		content[0] = 0;
 	else

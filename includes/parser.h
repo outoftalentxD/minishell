@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:38:37 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 16:23:25 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:54:58 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "minishell.h"
 
 /*parser*/
+t_sect	*parser(void);
 int		preparse(char **str);
 t_sect	*parse(char *line);
 int		postparse(t_sect **sect);
-void	print_sections(t_sect *sect);
 
 /* validator */
 int		input_is_valid(t_sect *elem);
@@ -33,11 +33,12 @@ int		ft_squeeze(char *str, int i);
 int		ft_isenvkey(int c);
 char	*process_envvar(char *str, int *i);
 int		get_next_char_pos(char *line, int start, int c);
+int		ft_add_history(t_sect *elem, char *line);
 
 /*quotes*/
 int		process_squote(char *str, int *i);
 int		process_dquote(char **str, int *i);
-
+int		preparse_all_quotes(char **strs);
 /*sections*/
 t_sect	*sect_init_elem(char *content);
 t_sect	*sect_sub_elem(char *str, int start, int len);

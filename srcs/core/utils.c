@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 18:26:48 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/12 23:16:22 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:50:58 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,18 @@ int	token_is_redirect(t_sect *elem)
 		return (0);
 }
 
-int	process_eof(char *line)
+int	ft_add_history(t_sect *elem, char *line)
 {
-	printf("exit\n");
-	free_mshell();
-	free(line);
-	exit(0);
+	if (!elem)
+		return (EXIT_FAILURE);
+	while (elem)
+	{
+		if (elem->type == SECT_TYPE_IN_DLM)
+			return (EXIT_FAILURE);
+		elem = elem->next;
+	}
+	add_history(line);
+	return (EXIT_SUCCESS);
 }
 
 int	set_exit_status(int status)

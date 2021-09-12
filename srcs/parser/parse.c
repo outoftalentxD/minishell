@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 16:05:57 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:55:20 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,50 +40,6 @@ int	preparse(char **strs)
 	return (EXIT_SUCCESS);
 }
 
-static int	preparse_quotes(char *str, int *i)
-{
-	int	j;
-	int	c;
-
-	j = *i;
-	c = str[j];
-	printf("c = %c\n", c);
-	ft_squeeze(str, j);
-	while (str[j])
-	{
-		if (str[j] == c)
-		{
-			ft_squeeze(str, j);
-			*i = j - 1;
-			return (EXIT_SUCCESS);
-		}
-		j++;
-	}
-	ft_putstr_fd("Bad sequence of single quotes\n", STDERR_FILENO);
-	return (EXIT_FAILURE);
-}
-
-static int	preparse_all_quotes(char **strs)
-{
-	int		i;
-	char	*str;
-
-	str = *strs;
-	i = -1;
-	if (!str)
-		return (EXIT_FAILURE);
-	while (str[++i])
-	{
-		if (str[i] == '\'' || str[i] == '"')
-		{
-			if (preparse_quotes(str, &i))
-				return (EXIT_FAILURE);
-		}
-		*strs = str;
-	}
-	return (EXIT_SUCCESS);
-}
-
 int	process_sections(t_sect *sect)
 {
 	while (sect)
@@ -99,6 +55,31 @@ int	process_sections(t_sect *sect)
 		if (preparse(&sect->content))
 			return (EXIT_FAILURE);
 		sect = sect->next;
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	postparse(t_sect **sect)
+{
+	t_sect	*elem;
+
+	elem = *sect;
+	while (elem)
+	{
+		if (!elem->content[0] && !elem->quote)
+		{
+			free(elem->content);
+			elem->content = NULL;
+			if (elem->type == SECT_TYPE_CMD)
+			{
+				sect_set_type(elem, SECT_TYPE_NULL);
+				if (elem->next && elem->next->type == SECT_TYPE_ARG)
+					sect_set_type(elem->next, SECT_TYPE_CMD);
+			}
+			else
+				sect_set_type(elem, SECT_TYPE_NULL);
+		}
+		elem = elem->next;
 	}
 	return (EXIT_SUCCESS);
 }
@@ -128,4 +109,25 @@ t_sect	*parse(char *line)
 		process_sections(sect);
 	}
 	return (sect);
+}
+
+t_sect	*parser(void)
+{
+	char	*line;
+	t_sect	*elem;
+
+	line = readline("minishell$ ");
+	if (!line)
+		process_eof(line);
+	if (quotes_is_valid(line))
+	{
+		free(line);
+		return (0);
+	}
+	elem = parse(line);
+	ft_add_history(elem, line);
+	free(line);
+	postparse(&elem);
+	g_mshell->sect = elem;
+	return (elem);
 }

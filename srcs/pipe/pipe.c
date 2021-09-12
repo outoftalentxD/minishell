@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/12 22:39:55 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:47:21 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void	fork_all_processes(t_sect *elem)
 			sig_sigint_off();
 			elem->pid = fork();
 			if (elem->pid == 0)
+			{
+				signal(SIGQUIT, SIG_DFL);
 				child_process(elem);
+			}
 		}	
 		elem = elem->next;
 	}
@@ -91,5 +94,6 @@ void	pipex(t_sect *elem)
 	}
 	else
 		process_command(elem);
+	unlink(".heredoc");
 	sig_sigint_on();
 }

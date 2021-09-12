@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+int	process_eof(char *line)
+{
+	printf("exit\n");
+	free_mshell();
+	free(line);
+	exit(0);
+}
+
 void	free_sect(t_sect *elem)
 {
 	t_sect	*temp;

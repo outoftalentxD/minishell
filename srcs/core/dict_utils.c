@@ -6,11 +6,24 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:13:48 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/03 12:23:57 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 11:53:33 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	dict_get_size(t_dict *dict)
+{
+	int	size;
+
+	size = 0;
+	while (dict)
+	{
+		size++;
+		dict = dict->next;
+	}
+	return (size);
+}
 
 char	*dict_get_value(t_dict *dict, char *key)
 {

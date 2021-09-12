@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:33:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 16:10:17 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 11:51:22 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,15 @@ int			dict_del_elem(t_dict **dict, t_dict *elem);
 char		*dict_get_value(t_dict *dict, char *key);
 int			dict_change_value(t_dict *elem, char *value);
 int			dict_change_value_dup(t_dict *elem, char *value);
+int			dict_get_size(t_dict *dict);
 
 /* enviroment utils */
 t_dict		*init_env(char **env);
 t_mshell	*init_mshell(char **env);
 t_sig		*init_signal(void);
-int			inc_shlvl(char **envp);
+char		**form_env(t_dict *elem);
+int			update_mshell_env(void);
+int			inc_shlvl(t_dict **env);
 
 /* exec command */
 int			exec_command(char **argv);

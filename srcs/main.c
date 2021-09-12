@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 16:17:05 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 11:41:12 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ static int	ft_add_history(t_sect *elem, char *line)
 	return (EXIT_SUCCESS);
 }
 
-int	main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
 	t_sect	*elem;
 
 	(void)argc;
 	(void)argv;
-	g_mshell = init_mshell(env);
+	g_mshell = init_mshell(envp);
 	while (1)
 	{
 		set_signal_handlers();
@@ -94,6 +94,7 @@ int	main(int argc, char **argv, char **env)
 		// g_mshell->sect = elem;
 		if (input_is_valid(elem))
 			continue ;
+		update_mshell_env();
 		cmd_execution(elem);
 		unlink(".heredoc");
 		// free_sect(elem);

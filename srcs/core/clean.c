@@ -14,7 +14,6 @@ void	free_sect(t_sect *elem)
 		elem = elem->next;
 		free(temp);
 	}
-	return;
 }
 
 void	free_env(t_dict *env)
@@ -31,7 +30,6 @@ void	free_env(t_dict *env)
 		env = env->next;
 		free(temp);
 	}
-	return;
 }
 
 void	free_mshell(void)
@@ -41,6 +39,4 @@ void	free_mshell(void)
 		free(g_mshell->signal);
 	free_env(g_mshell->env);
 	ft_free_args(g_mshell->envp);
-	// free_sect(g_mshell->sect);
-	return;
 }

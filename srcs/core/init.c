@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 03:09:21 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/12 15:27:05 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:24:35 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,5 @@ t_mshell	*init_mshell(char **env)
 	shell->sect = 0;
 	shell->signal = init_signal();
 	shell->exit_status = 0;
-	// shell->fd = ft_calloc(1, sizeof(t_fd));
-	// shell->fd->in = STDIN_FILENO;
-	// shell->fd->out = STDOUT_FILENO;
 	return (shell);
 }

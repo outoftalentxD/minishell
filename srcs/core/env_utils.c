@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 11:22:36 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/12 11:50:56 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:25:26 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	inc_shlvl(t_dict **env)
 	if (lvl == -1)
 		lvl = 0;
 	dict_change_value(elem, ft_itoa(lvl + 1));
-	return (EXIT_SUCCESS);	
+	return (EXIT_SUCCESS);
 }
 
 static char	*form_env_arg(char *key, char *value)
@@ -45,7 +45,7 @@ static char	*form_env_arg(char *key, char *value)
 	return (arg);
 }
 
-int		update_mshell_env(void)
+int	update_mshell_env(void)
 {
 	if (g_mshell->envp)
 		ft_free_args(g_mshell->envp);

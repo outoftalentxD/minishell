@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 19:16:39 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/12 23:16:56 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/12 23:31:15 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,29 @@ static int	ft_add_history(t_sect *elem, char *line)
 	return (EXIT_SUCCESS);
 }
 
-int	main(int argc, char **argv, char **envp)
+static t_sect	*parser(void)
 {
 	char	*line;
+	t_sect	*elem;
+
+	line = readline("minishell$ ");
+	if (!line)
+		process_eof(line);
+	if (quotes_is_valid(line))
+	{
+		free(line);
+		return (0);
+	}
+	elem = parse(line);
+	ft_add_history(elem, line);
+	free(line);
+	postparse(&elem);
+	g_mshell->sect = elem;
+	return (elem);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
 	t_sect	*elem;
 
 	(void)argc;
@@ -80,16 +100,9 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		set_signal_handlers();
-		line = readline("minishell$ ");
-		if (!line)
-			process_eof(line);
-		if (quotes_is_valid(line))
+		elem = parser();
+		if (!elem)
 			continue ;
-		elem = parse(line);
-		ft_add_history(elem, line);
-		free(line);
-		postparse(&elem);
-		g_mshell->sect = elem;
 		if (input_is_valid(elem))
 		{
 			free_sect(elem);
@@ -100,6 +113,5 @@ int	main(int argc, char **argv, char **envp)
 		unlink(".heredoc");
 		free_sect(elem);
 	}
-	free_mshell();
 	return (EXIT_SUCCESS);
 }

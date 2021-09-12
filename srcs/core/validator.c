@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:39:41 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 16:27:37 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 00:14:05 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	throw_input_error(char *token, int code)
 	ft_putstr_fd(error, STDERR_FILENO);
 	ft_putstr_fd(token, STDERR_FILENO);
 	ft_putendl_fd("'", STDERR_FILENO);
+	set_exit_status(2);
 	return (EXIT_FAILURE);
 }
 

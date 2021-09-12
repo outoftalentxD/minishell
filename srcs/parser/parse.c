@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 01:28:04 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/12 23:55:20 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 00:05:47 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ t_sect	*parser(void)
 		process_eof(line);
 	if (quotes_is_valid(line))
 	{
+		set_exit_status(EXIT_FAILURE);
 		free(line);
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 17:38:58 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/11 15:37:55 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 00:13:59 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	throw_error_rdrct(char *token, int code)
 			ft_putendl_fd(token, STDERR_FILENO);
 		}
 	}
+	set_exit_status(EXIT_FAILURE);
 	return (EXIT_FAILURE);
 }
 

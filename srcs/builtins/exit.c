@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbulwer <kbulwer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 21:37:13 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/10 22:38:33 by kbulwer          ###   ########.fr       */
+/*   Updated: 2021/09/13 15:45:02 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	throw_error_exit(char *arg, int code)
 {
+	ft_putendl_fd("exit", STDERR_FILENO);
 	if (code == EXIT_TOO_MANY_ARGS_ERROR)
 		ft_putendl_fd("minishell: exit: too many arguments", STDERR_FILENO);
 	else if (code == EXIT_NOT_NUM_ARG_ERROR)

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 01:37:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/13 00:13:55 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 15:39:45 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sig_handler(int signum)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		g_mshell->exit_status = 130;
+		g_mshell->exit_status = 1;
 		signal(SIGINT, sig_handler);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:36:49 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/13 15:34:58 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 16:13:26 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static int	throw_error_export(char **content, int code)
 		error = "export: not an identifier: ";
 	if (code == EXPORT_KEY_NULL_ERROR)
 	{
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd("minishell: =", STDERR_FILENO);
 		ft_putstr_fd(content[1], STDERR_FILENO);
-		ft_putendl_fd(" not found", STDERR_FILENO);
+		ft_putendl_fd(" not a valid identifier", STDERR_FILENO);
 		free(content[1]);
 		free(content);
-		return (set_exit_status(130));
+		return (set_exit_status(EXIT_FAILURE));
 	}
 	else
 	{
@@ -53,7 +53,7 @@ static int	env_key_is_valid(char *key)
 			return (EXPORT_KEY_CONTENT_ERROR);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static char	**split_env_elem(char *arg)
@@ -83,18 +83,16 @@ static char	**split_env_elem(char *arg)
 	return (content);
 }
 
-int	bi_export(char **args, t_dict *env)
+static int	export_add_elem(char *arg, t_dict *env)
 {
 	char	**content;
 	int		code;
-	int		size;
 	char	*value;
 	t_dict	*elem;
 
-	size = get_args_size(args);
-	if (size == 1)
-		return (bi_env(env, args));
-	content = split_env_elem(args[1]);
+	if (!ft_strchr(arg, '='))
+		return (EXIT_FAILURE);
+	content = split_env_elem(arg);
 	code = env_key_is_valid(content[0]);
 	if (code)
 		return (throw_error_export(content, code));
@@ -109,4 +107,24 @@ int	bi_export(char **args, t_dict *env)
 		dict_add_elem(&env, dict_init_elem(ft_strdup(content[0]), value));
 	ft_free_args(content);
 	return (set_exit_status(EXIT_SUCCESS));
+}
+
+int	bi_export(char **args, t_dict *env)
+{
+	int	code;
+	int	size;
+	int	i;
+
+	size = get_args_size(args);
+	if (size == 1)
+		return (bi_env(env, args));
+	i = 0;
+	code = EXIT_SUCCESS;
+	while (i < size)
+	{
+		if (export_add_elem(args[i], env))
+			code = EXIT_FAILURE;
+		i++;
+	}
+	return (code);
 }

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 01:37:43 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/13 15:39:45 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 16:24:23 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sig_heredoc_handler(int signum)
 		ft_putendl_fd("", STDERR_FILENO);
 		unlink(".heredoc");
 		free_mshell();
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 }
 

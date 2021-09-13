@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 02:56:50 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/13 15:16:36 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 16:19:28 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,9 @@ int	bi_cd(char **args, t_dict *env)
 
 	path = NULL;
 	size = get_args_size(args);
-	if (size > 2)
-		return (throw_error_cd(0, CD_TOO_MANY_ARGS_ERROR));
-	else if (size == 1)
+	if (size == 1)
 		path = dict_get_value(env, "HOME");
-	else if (size == 2)
+	else
 		path = args[1];
 	if (path)
 	{

@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 18:02:01 by kbulwer           #+#    #+#             */
-/*   Updated: 2021/09/13 00:13:52 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 16:28:41 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ void	process_command(t_sect *elem)
 		if (elem->type == SECT_TYPE_CMD && (!is_builtin(elem->content)))
 		{
 			waitpid(elem->pid, &status, 0);
-			set_exit_status(WEXITSTATUS(status));
+			if (status == 3)
+				set_exit_status(131);
+			else
+				set_exit_status(WEXITSTATUS(status));
 		}
 		elem = elem->next;
 	}

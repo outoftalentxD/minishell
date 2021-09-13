@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 02:56:50 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/06 13:05:03 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 15:16:36 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	bi_cd(char **args, t_dict *env)
 	char	buf[2048];
 	char	*pwd;
 
+	path = NULL;
 	size = get_args_size(args);
 	if (size > 2)
 		return (throw_error_cd(0, CD_TOO_MANY_ARGS_ERROR));

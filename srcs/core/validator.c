@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:39:41 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/13 00:14:05 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 15:16:42 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	throw_input_error(char *token, int code)
 {
 	char	*error;
 
+	error = NULL;
 	if (code == INPUT_TOKEN_ERROR)
 		error = "minishell: syntax error near unexpected token '";
 	ft_putstr_fd(error, STDERR_FILENO);

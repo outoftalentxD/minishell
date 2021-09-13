@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 23:44:35 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/12 23:10:59 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 15:35:59 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int	throw_error_binary(char *path, int code)
 		ret = 127;
 	else if (code == BIN_IS_DIR_ERROR)
 		ret = 126;
+	else
+		ret = EXIT_FAILURE;
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(path, STDERR_FILENO);
 	ft_putendl_fd(error, STDERR_FILENO);

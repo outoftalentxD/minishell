@@ -6,7 +6,7 @@
 /*   By: melaena <melaena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 17:38:58 by melaena           #+#    #+#             */
-/*   Updated: 2021/09/13 00:13:59 by melaena          ###   ########.fr       */
+/*   Updated: 2021/09/13 15:16:57 by melaena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	dup_out_rdrct(t_sect *elem, int opt)
 	int		fd;
 	t_sect	*cmd;
 
+	fd = 0;
 	if (opt == SECT_TYPE_OUT)
 		fd = open(elem->next->content, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	else if (opt == SECT_TYPE_OUT_AP)

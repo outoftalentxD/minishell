@@ -42,3 +42,30 @@
       + ctrl-C print a new prompt on a newline.
       + ctrl-D exit the shell.
       + ctrl-\ do nothing
+  
+  
+  Usage
+  -----------
+  ```
+  make
+  ./minishell
+  ```
+  
+  minishell has started ans showing you a prompt. Now use this just lika a real bash.
+  
+  Examples
+  -----------
+  
+  ![](srcs/images/example1.jpg)
+  
+  ![](srcs/images/example2.jpg)
+
+  ![](srcs/images/example3.jpg)
+  
+  ![](srcs/images/example4.jpg)
+  
+  ![](srcs/images/example5.jpg)
+  
+  
+
+

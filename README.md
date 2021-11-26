@@ -64,8 +64,3 @@
   
   ![](srcs/images/example4.jpg)
   
-  ![](srcs/images/example5.jpg)
-  
-  
-
-

@@ -1,9 +1,44 @@
-# minishell
-creating own shell with Alexey "krutoy bulwer" Nemtsov
-
-
-https://docs.google.com/document/d/1OzX0XRMcIUvCoE5ZTidod0K6yN3Kfs0wH0k-jTz45Lk/edit# - termcaps!
-
-https://drive.google.com/file/d/10aymDo3ffsJo48fwndhwTyUYVwXxCbXO/view?usp=sharing накидал фигни с сабжекта
-
-https://docs.google.com/spreadsheets/d/14DFb06WWoFPnSgSsdskshMJk1O1zz1w9SCCYTHG-8tg/edit?usp=sharing Ошибкусы
+  What is it?
+  -----------
+  
+  This is the program that mimic real shell. That is like little own bash or zsh.
+  
+  Contributors
+  -----------
+  
+  outoftalentxD, nemal300
+   
+  Little shell should:
+  -----------
+  
+* Not interpret unclosed quotes or unspecified special characters like \ or ;.
+* Not use more than one global variable.
+* Show a prompt when waiting for a new command.
+* Have a working History.
+* Search and launch the right executable (based on the PATH variable or by using
+relative or absolute path)
+* It must implement the builtins:
++ echo with option -n
++ cd with only a relative or absolute path
++ pwd with no options
++ export with no options
++ unset with no options
++ env with no options or arguments
++ exit with no options
+* ’ inhibit all interpretation of a sequence of characters.
+* " inhibit all interpretation of a sequence of characters except for $.
+* Redirections:
++ < should redirect input.
++ > should redirect output.
++ “<<” read input from the current source until a line containing only the delimiter is seen. it doesn’t need to update history!
++ “>>” should redirect output with append mode.
+* Pipes | The output of each command in the pipeline is connected via a pipe to the
+input of the next command.
+* Environment variables ($ followed by characters) should expand to their values.
+* $? should expand to the exit status of the most recently executed foreground
+pipeline.
+* ctrl-C ctrl-D ctrl-\ should work like in bash.
+* When interactive:
++ ctrl-C print a new prompt on a newline.
++ ctrl-D exit the shell.
++ ctrl-\ do nothing
